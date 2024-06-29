@@ -1,0 +1,165 @@
+<!doctype html>
+<title>Sprite Downloader | GDOnline</title>
+<link rel="icon" href="../style/icon.png">
+<script src="../libs/canvas.js"></script>
+<script src="../libs/utils.js"></script>
+<style>
+    * {
+        outline: none;
+        user-select: none;
+    }
+    ::selection, body {
+        background-color: black;
+        color: lightgray
+    }
+
+    input[type=file], a {
+        display: none;
+    }
+    input:not([type]), button {
+        background-color: lightgray;
+        border-radius: 5px;
+    }
+    button {
+        cursor: pointer;
+    }
+
+    canvas {
+        border: 1px solid lightgray;
+    }
+    #cutSection, #cutSectionBg {
+        position: absolute;
+        left: 10px;
+        top: 40px;
+    }
+    #spritesheet {
+        display: none;
+    }
+</style>
+
+<input type="file" id="sheetIn">
+<input type="file" id="infoIn">
+<button onclick="sheetIn.click()">Select spritesheet</button>
+<button onclick="infoIn.click()">Select info</button>
+<input id="spriteId" placeholder="Sprite id">
+<button onclick="downloadImg()">Download image</button>
+<button onclick="copySearchURL()">Copy search URL</button>
+<button onclick="copySearchText()">Copy search text</button>
+
+<br><canvas id="cutSectionBg"></canvas>
+<br><canvas id="cutSection"></canvas>
+
+<br><canvas id="spritesheet"></canvas>
+<a id="downloadLink"></a>
+
+<script>
+    let keys = []
+    let id
+    
+    onload = function () {
+        spritesheet.init(0, 0)
+        cutSection.init(0, 0, 10, 40)
+        cutSectionBg.init(0, 0, 10, 40)
+    }
+
+    sheetIn.onchange = function () {
+        let reader = new FileReader()
+        reader.readAsDataURL(sheetIn.files[0])
+        reader.onload = function () {
+            let url = reader.result
+
+            let img = new Image()
+            img.src = url
+            img.onload = function () {
+                spritesheet.setSize(this.width, this.height)
+                spritesheet.img(this.width / 2, this.height / 2, this, this.width, this.height, this.width, this.height)
+            }
+        }
+    }
+    infoIn.onchange = function () {
+        let reader = new FileReader()
+        reader.readAsText(infoIn.files[0])
+        reader.onload = function () {
+            let text = reader.result
+            
+            let parser = new DOMParser()
+            let xml = parser.parseFromString(text, "text/xml")
+            
+            let tags = xml.getElementsByTagName("dict")[1].children
+            keys = []
+            for (let tag of tags) {
+                let content = tag.innerHTML
+                if (tag.tagName == "key") keys.push({id: content.substring(0, content.lastIndexOf("."))})
+                else if (tag.tagName == "dict") {
+                    for (let str of tag.getElementsByTagName("string")) {
+                        let content = str.innerHTML
+                        if (content.startsWith("{{")) {
+                            keys[keys.length - 1].x = content.substring(2, content.indexOf(",")) * 1
+                            keys[keys.length - 1].y = content.substring(content.indexOf(",") + 1, content.indexOf("}")) * 1
+                            keys[keys.length - 1].w = content.substring(content.indexOf(",{") + 2, content.lastIndexOf(",")) * 1
+                            keys[keys.length - 1].h = content.substring(content.lastIndexOf(",") + 1, content.indexOf("}}")) * 1
+                            keys[keys.length - 1].rot = tag.getElementsByTagName("true").length > 0
+                            break
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    spriteId.onkeydown = function (ev) {
+        if (ev.key == "Enter") {
+            id = spriteId.value
+            let found = false
+            let possibleMatches = []
+            for (let key of keys) {
+                if (key.id == id) {
+                    cutSection.setSize(key.w, key.h)
+                    cutSectionBg.setSize(key.w, key.h)
+                    drawCutSectionBg()
+
+                    let w = key.rot ? key.h : key.w
+                    let h = key.rot ? key.w : key.h
+                    let data = spritesheet.getData(key.x + (w / 2), key.y + (h / 2), w, h)
+                    cutSection.putData(key.w / 2, key.h / 2, data, key.rot ? 270 : 0)
+
+                    found = true
+                    break
+                } else if (key.id.toLowerCase().indexOf(id.toLowerCase()) > -1) possibleMatches.push(key)
+            }
+            if (!found) {
+                cutSection.setSize(0, 0)
+                cutSectionBg.setSize(0, 0)
+
+                console.log("Could not find id '" + id + "'. Here are some possible matches:", possibleMatches)
+            }
+        }
+    }
+    function downloadImg () {
+        let url = cutSection.getDataURL()
+
+        downloadLink.download = id + ".png"
+        downloadLink.href = url
+        downloadLink.click()
+    }
+
+    function drawCutSectionBg () {
+        let whiteSquare = true
+        let size = cutSectionBg.getSize()
+        for (let y = 0; y < size.height; y += 5) {
+            for (let x = 0; x < size.width; x += 5) {
+                cutSectionBg.rect(x + 2.5, y + 2.5, 5, 5, whiteSquare ? "white" : "lightgray")
+
+                whiteSquare = !whiteSquare
+            }
+            if (Math.ceil(size.width / 5) % 2 == 0) whiteSquare = !whiteSquare
+        }
+    }
+
+    function copySearchURL () {
+        navigator.clipboard.writeText("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Geometry Dash\\Resources")
+    }
+    function copySearchText () {
+        navigator.clipboard.writeText("GJ_GameSheet*-hd.p")
+    }
+</script>

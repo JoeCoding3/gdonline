@@ -1,0 +1,12 @@
+todo:
+    editor:
+        make level autosave to current.js file in level/levels:
+            get write access on startup with button (needs user interaction)
+            autosave every 5 minutes (can be changed in options.js in seconds)
+            autosave before exiting editor mode
+        fix repeating blocks to work when going left
+        add level importing:
+            get level data from real gd:
+                filter to map from normal gd objects to my limited set and type
+    add error handling:
+        make custom error classes in errors.js
