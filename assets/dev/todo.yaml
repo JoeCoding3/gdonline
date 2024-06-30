@@ -1,7 +1,9 @@
 description:
     [WIP] My recreation of GD, online
 todo:
+    tweak ship physics
     editor:
+        add button to exit and play from start of level
         fix repeating blocks to work when going left
         add level importing:
             get level data from real gd:
