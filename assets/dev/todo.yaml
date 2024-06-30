@@ -11,3 +11,4 @@ todo:
                 filter to map from normal gd objects to my limited set and type
     add error handling:
         make custom error classes in errors.js
+    add credits and a disclaimer that this isn't real gd
