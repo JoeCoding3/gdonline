@@ -30,4 +30,4 @@ Cursor:
 Notes:
     Does not need to be run on a server.
     FPS counter and game status indicator in top left corner.
-Enjoy!
+    Enjoy!
