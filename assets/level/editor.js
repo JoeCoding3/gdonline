@@ -10,7 +10,9 @@ let editorIconNames = []
 registerConsts({
     editorGridSize: 60
 })
-function toggleEditor () {
+async function toggleEditor () {
+    if (editorEnabled && !exportLevelSaved) await exportLevel(exportLevelName, true)
+
     editorEnabled = !editorEnabled
     if (editorEnabled) {
         if (pauseEnabled) togglePause()
@@ -62,6 +64,8 @@ function click (btn, x, y) {
             rot: 180
         })
     }
+
+    exportLevelSaved = false
 }
 function wheel () {
     currentBlock = editorIconNames[editorIconIndex]

@@ -1,3 +1,6 @@
+let exportLevelHandle
+let exportLevelName
+let exportLevelSaved = true
 function loadLevel () {
     collisionBoxes = []
     let defLevel = [...level]
@@ -50,7 +53,7 @@ function getCollisionBox (x, y) {
 }
 function cBoxToLevelObj (cBox) {
     let objName = cBox.obj
-    if (objName != "bg" && objName != "ground") {
+    if (objName != "bg" && objName != "ground" && objName != "fixer") {
         let lObj = {
             obj: objName
         }
@@ -103,20 +106,31 @@ async function renderLevel () {
     }
 }
 
-function exportLevel (name) {
-    let levelObjs = []
-    for (let box of collisionBoxes) {
-        let lObj = cBoxToLevelObj(box)
-        if (lObj != undefined) levelObjs.push(lObj)
-    }
-
-    let strObjs = JSON.stringify(levelObjs)
-    let levelStr = "registerConsts({level:" + strObjs + "})"
-    downloadFile("text/plain", levelStr, name + ".js")
-}
-function startLevelExport () {
-    if (editorEnabled) {
-        let name = prompt("Level name", "level")
+function startLevelExport (bypassEditor) {
+    if (editorEnabled || bypassEditor) {
+        let name = exportLevelName
+        if (name == undefined) name = prompt("Level name", "level")
         if (name != null) exportLevel(name)
+    }
+}
+async function exportLevel (name, noPrompt) {
+    if (name == undefined) startLevelExport(true)
+    else {
+        exportLevelName = name
+        
+        let levelObjs = []
+        for (let box of collisionBoxes) {
+            let lObj = cBoxToLevelObj(box)
+            if (lObj != undefined) levelObjs.push(lObj)
+        }
+
+        let strObjs = JSON.stringify(levelObjs)
+        let levelStr = "registerConsts({level:" + strObjs + "})"
+
+        if (exportLevelHandle == undefined) exportLevelHandle = await downloadFile(levelStr, name, "js")
+        else await writeFile(levelStr, exportLevelHandle)
+
+        exportLevelSaved = true
+        if (!noPrompt) alert("Level saved as " + name + ".js!")
     }
 }

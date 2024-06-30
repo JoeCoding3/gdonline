@@ -26,6 +26,7 @@ async function loadAssets () {
     await require("libs/consts.js")
     await require("libs/utils.js")
     await require("libs/canvas.js")
+    await require("libs/fileutil.js")
     await require("options.js")
     await require("sprites/info.js")
     await require("level/load.js")

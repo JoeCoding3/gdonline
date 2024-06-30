@@ -1,9 +1,9 @@
 todo:
+    reload level file on player death to sync changes
+    update ship physics
     editor:
-        make level autosave to current.js file in level/levels:
-            get write access on startup with button (needs user interaction)
-            autosave every 5 minutes (can be changed in options.js in seconds)
-            autosave before exiting editor mode
+        fix level exporting:
+            fix x-pos
         fix repeating blocks to work when going left
         add level importing:
             get level data from real gd:

@@ -27,12 +27,12 @@ function alignObjY (origY, imgH, flip) {
     return flip ? origY - change : origY + change
 }
 
-function downloadFile (mime, data, name) {
-    let b64 = btoa(data)
-    let dURL = "data:" + mime + ";base64," + b64
+async function downloadFile (data, name, extension) {
+    let handle = await fileutil.file.download.handle(name, "." + extension)
+    await writeFile(data, handle)
 
-    let a = document.createElement("a")
-    a.download = name
-    a.href = dURL
-    a.click()
+    return handle
+}
+async function writeFile (data, handle) {
+    await handle.write(data)
 }

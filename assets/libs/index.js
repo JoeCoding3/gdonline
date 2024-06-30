@@ -31,3 +31,7 @@ function resize (ev) {
     if (ev != undefined) updateGraphics()
 }
 onresize = resize
+
+onbeforeunload = function (ev) {
+    if (!exportLevelSaved) ev.preventDefault()
+}
