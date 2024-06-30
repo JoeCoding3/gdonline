@@ -6,3 +6,5 @@ todo:
                 filter to map from normal gd objects to my limited set and type
     add error handling:
         make custom error classes in errors.js
+
+a
