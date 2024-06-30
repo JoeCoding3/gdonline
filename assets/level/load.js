@@ -136,3 +136,6 @@ async function exportLevel (name, noPrompt) {
         if (!noPrompt) alert("Level saved as " + name + ".js!")
     }
 }
+
+function endLevel () { // endLevel function will call when levelEnding is true and player exits right of screen
+}

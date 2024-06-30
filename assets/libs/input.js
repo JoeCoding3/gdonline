@@ -12,6 +12,7 @@ onkeydown = function (ev) {
     else if (key == "d") pressingRight = true
     else if (key == "p") togglePause()
     else if (key == "e") toggleEditor()
+    else if (key == "r") toggleEditor(true)
     else if (key == "enter") startLevelExport()
 }
 onkeyup = function (ev) {

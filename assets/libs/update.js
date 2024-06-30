@@ -11,6 +11,7 @@ let lastFrameTime
 let playerMode
 let fps
 let editorIcons = []
+let levelEnding = false
 registerConsts({
     playerGrav: 0.8,
     playerGravShip: 0.33,
@@ -107,7 +108,8 @@ function updatePhysics () {
             if (playerShipFallTime >= playerShipPressCap) playerShipFallTime = playerShipPressCap
         }
 
-        if (playerX < innerWidth / 2) playerX += playerSpdX
+        if (levelEnding && playerX > innerWidth + (playerW / 2)) endLevel()
+        if (playerX < innerWidth / 2 || levelEnding) playerX += playerSpdX
         else if (playerX > innerWidth / 2) playerX = innerWidth / 2
         else {
             for (let index in collisionBoxes) {

@@ -1,6 +1,7 @@
 Controls:
     space: Jump
     e: Toggle editor
+    r: Toggle editor and teleport to start of level
     p: Toggle pause
 Editor Controls:
     WASD: Fly
@@ -20,9 +21,9 @@ Level Exporting:
 Config:
     File is gdonline/assets/options.js.
     Options:
-        targetFps: Speed of the game. Does not make the game run better.
-        showHitboxes: Draw hitboxes or not.
-        levelName: Name of the level to load on startup.
+        targetFps: Target game speed
+        showHitboxes: Draw hitboxes or not
+        levelName: Name of the level to load on startup
 Cursor:
     Invisible while playing.
     Default when paused.
