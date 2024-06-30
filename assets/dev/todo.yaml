@@ -1,7 +1,8 @@
 description:
     [WIP] My recreation of GD, online
 todo:
-    tweak ship physics
+    tweak ship physics:
+        do it myself or let jack do it
     editor:
         add button to exit and play from start of level
         fix repeating blocks to work when going left
