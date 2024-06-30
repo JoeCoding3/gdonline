@@ -84,7 +84,7 @@ function assignValues (target, source) {
         let origSourceVal = sourceVal
         if (sourceKey != "obj" && sourceKey != "type" && sourceKey != "texture") sourceVal = eval(sourceVal)
         target[sourceKey] = sourceVal
-        target["orig_" + sourceKey] = origSourceVal
+        if (target["orig_" + sourceKey] == undefined) target["orig_" + sourceKey] = origSourceVal
     }
 }
 
@@ -127,7 +127,7 @@ async function exportLevel (name, noPrompt) {
         }
 
         let strObjs = JSON.stringify(levelObjs)
-        let levelStr = "var level = " + strObjs
+        let levelStr = "var level = " + strObjs + "\n"
 
         if (exportLevelHandle == undefined) exportLevelHandle = await downloadFile(levelStr, name, "js")
         else await writeFile(levelStr, exportLevelHandle)

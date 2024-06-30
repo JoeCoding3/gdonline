@@ -1,8 +1,5 @@
 todo:
-    update ship physics
     editor:
-        fix level exporting:
-            fix x-pos
         fix repeating blocks to work when going left
         add level importing:
             get level data from real gd:

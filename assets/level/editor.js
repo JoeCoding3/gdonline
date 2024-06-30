@@ -40,6 +40,7 @@ async function toggleEditor () {
 }
 function click (btn, x, y) {
     exportLevelSaved = false
+    let xLeft = collisionBoxes[1].hitX + editorGridSize
     
     let gridX = snapToGrid(x, editorGridSize, editorGridX)
     let gridY = snapToGrid(y, editorGridSize, editorGridY)
@@ -50,7 +51,8 @@ function click (btn, x, y) {
         addCollisionBox({
             obj: currentBlock,
             imgX: gridX,
-            imgY: y
+            imgY: y,
+            orig_imgX: gridX - xLeft
         })
     } else if (btn == 1) {
         let index = getCollisionBox(gridX, gridY)
@@ -63,7 +65,8 @@ function click (btn, x, y) {
             obj: currentBlock,
             imgX: gridX,
             imgY: y,
-            rot: 180
+            rot: 180,
+            orig_imgX: gridX - xLeft
         })
     }
 }

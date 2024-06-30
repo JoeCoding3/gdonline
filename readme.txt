@@ -11,10 +11,13 @@ index.html:
         Right-Click: Place block rotated 180 degrees
         Enter: Export level
     Level Exporting:
-        Input the name of the level and click OK.
-        To cancel exporting, click Cancel.
-        The level will download with a .js extension.
-        Move the level file to gdonline/assets/level/levels.
+        Level will auto-export when exiting editor mode, this is the small freeze that you may notice.
+        When Exporting:
+            Input the name of the level and click OK.
+            To cancel exporting, click Cancel.
+            Save the level file in gdonline/assets/level/levels.
+            The level will download with a .js extension, don't change it.
+            You can rename the file to change the level name.
     Config:
         File is gdonline/assets/options.js.
         Options:
