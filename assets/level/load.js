@@ -1,7 +1,9 @@
 let exportLevelHandle
 let exportLevelName
 let exportLevelSaved = true
-function loadLevel () {
+async function loadLevel () {
+    await loadLevelScript()
+
     collisionBoxes = []
     let defLevel = [...level]
     for (let obj of Object.keys(defaultObjInfo)) if (defaultObjInfo[obj].auto) defLevel.push({obj})
@@ -125,7 +127,7 @@ async function exportLevel (name, noPrompt) {
         }
 
         let strObjs = JSON.stringify(levelObjs)
-        let levelStr = "registerConsts({level:" + strObjs + "})"
+        let levelStr = "var level = " + strObjs
 
         if (exportLevelHandle == undefined) exportLevelHandle = await downloadFile(levelStr, name, "js")
         else await writeFile(levelStr, exportLevelHandle)

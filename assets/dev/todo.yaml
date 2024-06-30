@@ -1,5 +1,4 @@
 todo:
-    reload level file on player death to sync changes
     update ship physics
     editor:
         fix level exporting:

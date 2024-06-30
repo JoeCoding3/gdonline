@@ -39,6 +39,8 @@ async function toggleEditor () {
     }
 }
 function click (btn, x, y) {
+    exportLevelSaved = false
+    
     let gridX = snapToGrid(x, editorGridSize, editorGridX)
     let gridY = snapToGrid(y, editorGridSize, editorGridY)
     if (btn == 0) {
@@ -64,14 +66,12 @@ function click (btn, x, y) {
             rot: 180
         })
     }
-
-    exportLevelSaved = false
 }
 function wheel () {
     currentBlock = editorIconNames[editorIconIndex]
 }
 function calculateEditorOffset () {
-    let offsetBoxX = collisionBoxes[collisionBoxes.length - 2]
+    let offsetBoxX = collisionBoxes[1]
     editorGridX = ((offsetBoxX.imgX - (offsetBoxX.imgW / 2)) % editorGridSize) + ((offsetBoxX.imgW - editorGridSize) / 2)
     editorGridY = (innerHeight - 128) % editorGridSize
 }

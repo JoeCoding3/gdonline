@@ -1,1 +1,1 @@
-registerConsts({level:[]})
+var level = []

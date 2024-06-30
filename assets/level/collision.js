@@ -1,7 +1,7 @@
 let playerOnGround = true
 let playerCrashed = false
 let playerCoins = 0
-let collisionBoxes
+let collisionBoxes = []
 function checkCollision () {
     checkHeadCollision()
     checkGroundCollision()

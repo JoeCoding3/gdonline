@@ -1,3 +1,4 @@
+let levelScript
 async function require (path) {
     return new Promise(function (resolve) {
         path = "./assets/" + path
@@ -6,13 +7,15 @@ async function require (path) {
             elem = document.createElement("script")
             elem.src = path
             
-            elem.onload = resolve
+            elem.onload = function () {
+                resolve(this)
+            }.bind(elem)
         } else if (path.endsWith(".css") || path.endsWith(".png")) {
             elem = document.createElement("link")
             elem.href = path
             elem.rel = path.endsWith(".css") ? "stylesheet" : "icon"
 
-            resolve()
+            resolve(elem)
         }
 
         document.head.append(elem)
@@ -35,5 +38,9 @@ async function loadAssets () {
     await require("libs/update.js")
     await require("level/editor.js")
     
-    await require("level/levels/" + constDefaults.levelName + ".js")
+    await loadLevelScript()
+}
+async function loadLevelScript () {
+    if (levelScript != undefined) levelScript.remove()
+    levelScript = await require("level/levels/" + constDefaults.levelName + ".js")
 }
