@@ -14,13 +14,13 @@ let editorIcons = []
 let levelEnding = false
 registerConsts({
     playerGrav: 0.8,
-    playerGravShip: 0.33,
+    playerGravShip: 0.4,
     playerJumpVel: 15,
     playerJumpVelShip: 4.5,
     playerRSpd: 4.7,
     playerYSpdCap: 25,
     playerSpdX: 7,
-    playerShipPressMul: 0.1,
+    playerShipPressMul: 0.05,
     playerShipPressCap: 3
 })
 function tick () {
