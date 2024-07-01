@@ -116,16 +116,14 @@ function updatePhysics () {
                 let box = collisionBoxes[index]
                 
                 let xSpd = playerSpdX * box.spd
-                collisionBoxes[index].hitX -= xSpd
                 collisionBoxes[index].imgX -= xSpd
 
                 if (box.repeat) {
                     let farLeft = box.imgX - (box.imgW / 2)
-                    if (farLeft <= -box.resizeW + 2) {
-                        box.imgX = box.imgW / 2
-                        box.hitX -= farLeft
-                    }
-                }
+                    let farRight = box.imgX + (box.imgW / 2)
+                    if (farLeft <= box.repeatL + 2 && playerSpdX > 0) box.imgX = eval(box.orig_imgX) - 2
+                    if (farRight >= box.repeatR - 2 && playerSpdX < 0) box.imgX = eval(box.orig_imgX) + 2
+                } else collisionBoxes[index].hitX -= xSpd
             }
         }
 

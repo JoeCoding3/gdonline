@@ -3,23 +3,26 @@ registerConsts({
         bg: {
             hitX: 0,
             hitY: 0,
-            hitW: "innerWidth * 3",
+            hitW: "innerWidth",
             hitH: "innerHeight",
-            imgX: "innerWidth * 1.5",
+            imgX: "innerWidth / 2",
             imgY: "innerHeight / 2",
+            imgW: "innerWidth + (innerHeight * 4)",
             resizeW: "innerHeight",
             repeat: true,
-            spd: 0.2,
+            spd: 0.15,
             type: "deco",
             texture: "ground/bg",
             zIndex: 0,
             noEditor: true,
-            auto: true
+            auto: true,
+            repeatL: "innerHeight * -3",
+            repeatR: "innerWidth + (innerHeight * 3)"
         },
         ground: {
-            hitX: "-playerW",
+            hitX: 0,
             hitY: "innerHeight - 128",
-            hitW: "innerWidth + playerW",
+            hitW: "innerWidth + (playerW * 2)",
             hitH: 128,
             imgX: "innerWidth / 2",
             imgY: "innerHeight - 64",
@@ -30,7 +33,9 @@ registerConsts({
             texture: "ground/ground",
             zIndex: 1000,
             noEditor: true,
-            auto: true
+            auto: true,
+            repeatL: -256,
+            repeatR: "innerWidth + 256"
         },
         fixer: {
             hitW: 60,
@@ -117,6 +122,8 @@ registerConsts({
         type: "",
         texture: "",
         repeat: false,
+        repeatL: 0,
+        repeatR: 0,
         noEditor: false,
         noAlign: false,
         auto: false,
