@@ -158,6 +158,9 @@ function addEndObj () {
     })
 }
 function endLevel () {
-    if (!levelEnded) playerCanvas.text(innerWidth / 2, innerHeight / 2, 100, objTypeHitCols.text, "Level Complete!")
+    if (!levelEnded) {
+        playerCanvas.text(innerWidth / 2, innerHeight / 2, 100, objTypeHitCols.text, "Level Complete!")
+        document.body.style.cursor = "default"
+    }
     levelEnded = true
 }
