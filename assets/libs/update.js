@@ -14,14 +14,19 @@ let editorIcons = []
 let levelEnding = false
 registerConsts({
     playerGrav: 0.8,
-    playerGravShip: 0.4,
+    playerGravShip: 0.24,
     playerJumpVel: 15,
-    playerJumpVelShip: 4.5,
+    playerJumpVelShip: 4.8,
     playerRSpd: 4.7,
     playerYSpdCap: 25,
     playerSpdX: 7,
-    playerShipPressMul: 0.05,
-    playerShipPressCap: 3
+    playerShipPressMul: 0.045,
+    playerShipFallMul: 0.03,
+    playerShipPressCap: 2.8,
+    playerShipRotUp: 325,
+    playerShipRotDown: 390,
+    playerShipRMulUp: 2.5,
+    playerShipRMulDown: 0.8
 })
 function tick () {
     let currentFrameTime = performance.now()
@@ -104,7 +109,7 @@ function updatePhysics () {
             else if (playerOnGround || editorEnabled) playerSpdY = -playerJumpVel
         } else {
             playerShipPressTime = 0
-            playerShipFallTime += playerShipPressMul
+            playerShipFallTime += playerShipFallMul
             if (playerShipFallTime >= playerShipPressCap) playerShipFallTime = playerShipPressCap
         }
 
@@ -139,8 +144,9 @@ function updatePhysics () {
         } else {
             if (editorEnabled) playerR = 0
             else if (isShip) {
-                if (pressingUp) playerR = 360 - (playerShipPressTime * 20)
-                else playerR = -360 + (playerShipFallTime * 20)
+                if (playerR == 0) playerR = 360
+                if (pressingUp && playerR > playerShipRotUp) playerR -= (playerShipPressTime * playerShipRMulUp)
+                else if (!pressingUp && playerR < playerShipRotDown) playerR += (playerShipFallTime * playerShipRMulDown)
             } else playerR += playerRSpd
 
             if (editorEnabled && !pressingDown) playerSpdY = 0
