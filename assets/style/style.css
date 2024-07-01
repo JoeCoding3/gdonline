@@ -6,19 +6,6 @@ body {
     background-color: black;
     color: lightgray;
     font-size: 100px;
+    font-family: "Arial";
     cursor: none;
-}
-
-div#statusEl, div#fpsEl {
-    position: absolute;
-    left: 10px;
-
-    font-size: 30px;
-    z-index: 1000;
-}
-div#statusEl {
-    top: 50px;
-}
-div#fpsEl {
-    top: 10px;
 }

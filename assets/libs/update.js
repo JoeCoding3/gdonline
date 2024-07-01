@@ -10,6 +10,7 @@ let playerImg
 let lastFrameTime
 let playerMode
 let fps
+let lastFpsStr = ""
 let editorIcons = []
 let levelEnding = false
 let levelEnded = false
@@ -44,10 +45,8 @@ function tick () {
     tickIterations++
 }
 async function updateGraphics () {
-    statusEl.innerText = gameStatus
-    if (tickIterations % targetFps == targetFps / 2) fpsEl.innerText = fps.toString().padStart(3, "0") + " fps"
-    
     playerCanvas.clear()
+
     if (editorEnabled) {
         calculateEditorOffset()
         for (let x = editorGridX; x <= innerWidth; x += editorGridSize) playerCanvas.rect(x, innerHeight / 2, 2, innerHeight, objTypeHitCols.editor)
@@ -96,6 +95,10 @@ async function updateGraphics () {
             playerCanvas.rect(box.hitX + (box.hitW / 2), box.hitY + (box.hitH / 2), box.hitW, box.hitH, col, 0, 2)
         }
     }
+
+    if (tickIterations % targetFps == targetFps / 2 || tickIterations == 0) lastFpsStr = fps.toString().padStart(3, "0") + " fps"
+    playerCanvas.text(55, 20, 30, "lightgray", lastFpsStr)
+    playerCanvas.text(50, 52, 30, "lightgray", gameStatus)
 }
 function updatePhysics () {
     if (!playerCrashed && !pauseEnabled) {
