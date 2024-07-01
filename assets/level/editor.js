@@ -13,6 +13,7 @@ registerConsts({
 })
 async function toggleEditor (restart) {
     if (editorEnabled && !exportLevelSaved) await exportLevel(exportLevelName, true)
+    levelEnding = false
 
     editorEnabled = !editorEnabled
     if (editorEnabled) {
@@ -33,10 +34,14 @@ async function toggleEditor (restart) {
                 }
             }
         }
+        
+        removeEndObj()
     } else {
         resetConst("playerSpdX")
         gameStatus = ""
         document.body.style.cursor = "none"
+        
+        addEndObj()
     }
 
     if (restart) {

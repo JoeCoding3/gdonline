@@ -6,12 +6,12 @@ onkeydown = function (ev) {
     if (ev.repeat) return
     let key = ev.key.toLowerCase()
 
-    if (key == (editorEnabled ? "w" : " ")) pressingUp = true
+    if (key == (editorEnabled ? "w" : " ") && (editorEnabled || !levelEnding)) pressingUp = true
     else if (key == "s") pressingDown = true
     else if (key == "a") pressingLeft = true
     else if (key == "d") pressingRight = true
     else if (key == "p") togglePause()
-    else if (key == "e") toggleEditor()
+    else if (key == "e" && !levelEnded) toggleEditor()
     else if (key == "r") toggleEditor(true)
     else if (key == "enter") startLevelExport()
 }

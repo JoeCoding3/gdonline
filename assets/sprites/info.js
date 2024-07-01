@@ -13,7 +13,7 @@ registerConsts({
             spd: 0.15,
             type: "deco",
             texture: "ground/bg",
-            zIndex: 0,
+            zIndex: -1,
             noEditor: true,
             auto: true,
             repeatL: "innerHeight * -3",
@@ -31,7 +31,7 @@ registerConsts({
             repeat: true,
             type: "ground",
             texture: "ground/ground",
-            zIndex: 1000,
+            zIndex: 1001,
             noEditor: true,
             auto: true,
             repeatL: -256,
@@ -45,6 +45,19 @@ registerConsts({
             noEditor: true,
             auto: true,
             zIndex: 0
+        },
+        ending: {
+            hitW: 60,
+            hitH: "innerHeight",
+            imgY: "innerHeight / 2",
+            type: "ending",
+            texture: "ending/ending",
+            resizeH: 60,
+            noEditor: true,
+            zIndex: 1000,
+            special: {
+                spacing: 500
+            }
         },
         block: {
             hitW: 60,
@@ -136,6 +149,7 @@ registerConsts({
         spike: "red",
         portal: "orange",
         coin: "yellow",
+        ending: "brown",
         editor: "gray"
     }
 })

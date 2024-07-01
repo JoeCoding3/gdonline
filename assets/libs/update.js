@@ -12,6 +12,7 @@ let playerMode
 let fps
 let editorIcons = []
 let levelEnding = false
+let levelEnded = false
 registerConsts({
     playerGrav: 0.8,
     playerGravShip: 0.24,
@@ -98,6 +99,9 @@ async function updateGraphics () {
 }
 function updatePhysics () {
     if (!playerCrashed && !pauseEnabled) {
+        let endPos = collisionBoxes.length - 2
+        if (collisionBoxes[endPos] != undefined && collisionBoxes[endPos].obj == "ending" && collisionBoxes[endPos].imgX <= innerWidth - (editorGridSize / 2)) levelEnding = true
+
         let isShip = playerMode == "ship"
 
         if (pressingUp) {
@@ -114,7 +118,7 @@ function updatePhysics () {
         }
 
         if (levelEnding && playerX > innerWidth + (playerW / 2)) endLevel()
-        if (playerX < innerWidth / 2 || levelEnding) playerX += playerSpdX
+        else if (playerX < innerWidth / 2 || levelEnding) playerX += playerSpdX
         else if (playerX > innerWidth / 2) playerX = innerWidth / 2
         else {
             for (let index in collisionBoxes) {

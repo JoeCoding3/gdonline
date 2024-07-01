@@ -1,10 +1,8 @@
 description:
     [WIP] My recreation of GD, online
 todo:
-    add ending wall object:
-        make auto-generate at end of level
-        set levelEnding to true when comes onscreen
-        add end screen in endLevel function
+    do something when player beats level:
+        add code to endLevel function (go to breakpoint)
     editor:
         add level importing:
             get level data from real gd:

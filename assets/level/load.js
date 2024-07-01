@@ -8,6 +8,7 @@ async function loadLevel () {
     let defLevel = [...level]
     for (let obj of Object.keys(defaultObjInfo)) if (defaultObjInfo[obj].auto) defLevel.push({obj})
     for (let box of defLevel) addCollisionBox(box)
+    addEndObj()
 
     renderLevel()
 }
@@ -55,7 +56,7 @@ function getCollisionBox (x, y) {
 }
 function cBoxToLevelObj (cBox) {
     let objName = cBox.obj
-    if (objName != "bg" && objName != "ground" && objName != "fixer") {
+    if (objName != "bg" && objName != "ground" && objName != "fixer" && objName != "ending") {
         let lObj = {
             obj: objName
         }
@@ -137,5 +138,28 @@ async function exportLevel (name, noPrompt) {
     }
 }
 
-function endLevel () { // endLevel function will call when levelEnding is true and player exits right of screen
+function removeEndObj () {
+    for (let index in collisionBoxes) {
+        let box = collisionBoxes[index]
+        if (box.obj == "ending") collisionBoxes.splice(index, 1)
+    }
+}
+function addEndObj () {
+    removeEndObj()
+
+    let maxBox = {imgX: 0, imgW: 0}
+    for (let box of collisionBoxes) if (box.imgX + (box.imgW / 2) > maxBox.imgX + (maxBox.imgW / 2) && box.obj != "bg" && box.obj != "ground" && box.obj != "fixer" && box.obj != "ending") maxBox = box
+    
+    let endX = maxBox.imgX + (maxBox.imgW / 2) + defaultObjInfo.ending.special.spacing
+    if (endX < innerWidth - (editorGridSize / 2)) endX = innerWidth - (editorGridSize / 2)
+    addCollisionBox({
+        obj: "ending",
+        imgX: endX
+    })
+}
+function endLevel () {
+    if (!levelEnded) {
+        // level ended, do something
+    }
+    levelEnded = true
 }
