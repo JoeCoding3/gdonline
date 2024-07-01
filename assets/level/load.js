@@ -158,8 +158,6 @@ function addEndObj () {
     })
 }
 function endLevel () {
-    if (!levelEnded) {
-        // level ended, do something
-    }
+    if (!levelEnded) playerCanvas.text(innerWidth / 2, innerHeight / 2, 100, objTypeHitCols.text, "Level Complete!")
     levelEnded = true
 }

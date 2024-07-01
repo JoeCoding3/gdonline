@@ -1,8 +1,6 @@
 description:
     [WIP] My recreation of GD, online
 todo:
-    do something when player beats level:
-        add code to endLevel function (go to breakpoint)
     editor:
         add level importing:
             get level data from real gd:
@@ -10,6 +8,3 @@ todo:
     add error handling:
         make custom error classes in errors.js
     add credits and a disclaimer that this is a fangame, not real gd
-additional features:
-    reverse portals:
-        change sign of player x-spd

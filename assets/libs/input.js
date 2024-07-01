@@ -10,10 +10,10 @@ onkeydown = function (ev) {
     else if (key == "s") pressingDown = true
     else if (key == "a") pressingLeft = true
     else if (key == "d") pressingRight = true
-    else if (key == "p") togglePause()
+    else if (key == "p" && !levelEnded) togglePause()
     else if (key == "e" && !levelEnded) toggleEditor()
-    else if (key == "r") toggleEditor(true)
-    else if (key == "enter") startLevelExport()
+    else if (key == "r" && !levelEnded) toggleEditor(true)
+    else if (key == "enter" && !levelEnded) startLevelExport()
 }
 onkeyup = function (ev) {
     let key = ev.key.toLowerCase()

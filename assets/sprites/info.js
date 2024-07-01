@@ -150,6 +150,7 @@ registerConsts({
         portal: "orange",
         coin: "yellow",
         ending: "brown",
-        editor: "gray"
+        editor: "gray",
+        text: "lightgray"
     }
 })

@@ -39,8 +39,10 @@ function tick () {
     fps = Math.floor(1000 / deltaTime)
     if (fps > 999) fps = 999
     
-    updateGraphics()
-    updatePhysics()
+    if (!levelEnded) {
+        updateGraphics()
+        updatePhysics()
+    }
     
     tickIterations++
 }
@@ -97,16 +99,17 @@ async function updateGraphics () {
     }
 
     if (tickIterations % targetFps == targetFps / 2 || tickIterations == 0) lastFpsStr = fps.toString().padStart(3, "0") + " fps"
-    playerCanvas.text(55, 20, 30, "lightgray", lastFpsStr)
-    playerCanvas.text(50, 52, 30, "lightgray", gameStatus)
+    playerCanvas.text(55, 20, 30, objTypeHitCols.text, lastFpsStr)
+    playerCanvas.text(50, 52, 30, objTypeHitCols.text, gameStatus)
 }
 function updatePhysics () {
     if (!playerCrashed && !pauseEnabled) {
         let endPos = collisionBoxes.length - 2
-        if (collisionBoxes[endPos] != undefined && collisionBoxes[endPos].obj == "ending" && collisionBoxes[endPos].imgX <= innerWidth - (editorGridSize / 2)) levelEnding = true
+        if (collisionBoxes[endPos] != undefined && collisionBoxes[endPos].obj == "ending" && collisionBoxes[endPos].imgX - playerX <= defaultObjInfo.ending.special.spacing) levelEnding = true
 
         let isShip = playerMode == "ship"
 
+        if (levelEnding && !editorEnabled) pressingUp = false
         if (pressingUp) {
             playerShipFallTime = 0
             playerShipPressTime += playerShipPressMul
@@ -121,7 +124,7 @@ function updatePhysics () {
         }
 
         if (levelEnding && playerX > innerWidth + (playerW / 2)) endLevel()
-        else if (playerX < innerWidth / 2 || levelEnding) playerX += playerSpdX
+        else if (playerX < innerWidth / 2 || collisionBoxes[endPos].imgX - (editorGridSize / 2) <= innerWidth - editorGridSize) playerX += playerSpdX
         else if (playerX > innerWidth / 2) playerX = innerWidth / 2
         else {
             for (let index in collisionBoxes) {
