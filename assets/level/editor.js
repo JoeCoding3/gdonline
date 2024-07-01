@@ -44,8 +44,10 @@ async function toggleEditor (restart) {
 
         calculateStartOffset()
         for (let box of collisionBoxes) {
-            box.imgX -= levelStartOffset
-            box.hitX -= levelStartOffset
+            if (!box.repeat) {
+                box.imgX -= levelStartOffset
+                box.hitX -= levelStartOffset
+            }
         }
     }
 }
