@@ -8,7 +8,3 @@ todo:
                 filter to map from normal gd objects to my limited set and type
     add error handling:
         make custom error classes in errors.js
-if made public:
-    add credits and a disclaimer that this is a fangame, not real gd:
-        add to game
-        add to github repo
