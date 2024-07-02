@@ -1,8 +1,8 @@
 let exportLevelHandle
 let exportLevelName
 let exportLevelSaved = true
-async function loadLevel () {
-    await loadLevelScript()
+async function loadLevel (noScript) {
+    if (!noScript) await loadLevelScript()
 
     collisionBoxes = []
     let defLevel = [...level]
@@ -137,15 +137,24 @@ async function exportLevel (name, noPrompt, overrideHandle) {
         if (!noPrompt) alert("Level saved as " + name + ".level.js!")
     }
 }
-async function startLevelImport (bypassEditor) {
-    if (editorEnabled || bypassEditor) {
-        let name = prompt("Level name to import", "level")
-        if (name != null) {
-            levelName = name
-            resetPlayer()
+async function startLevelImport (bypassEditor, filePicker) {
+    let noScript = false
 
-            if (editorEnabled) toggleEditor()
+    if (editorEnabled || bypassEditor) {
+        if (filePicker) {
+            let [handle] = await fileutil.file.get(".level.js")
+            let content = await handle.read()
+            level = Function(content + "; return level")()
+
+            noScript = true
+        } else {
+            let name = prompt("Level name to import", "level")
+            if (name == null) return
+            levelName = name
         }
+
+        resetPlayer(noScript)
+        if (editorEnabled) toggleEditor()
     }
 }
 

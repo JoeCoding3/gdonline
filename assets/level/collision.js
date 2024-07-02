@@ -136,9 +136,9 @@ function respawnPlayer () {
         }, 700)
     }
 }
-function resetPlayer () {
+function resetPlayer (noScript) {
     updatePlayerMode("cube")
-    loadLevel()
+    loadLevel(noScript)
 
     playerX = 0
     playerY = innerHeight - (playerW / 2) - 128

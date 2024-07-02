@@ -13,6 +13,7 @@ Editor/Level Beaten Controls:
     O: Export level
         Shift: Pick new file name
     I: Import level
+        Shift: Show file picker
 Level Exporting:
     Level will auto-export when exiting editor mode, this is the small freeze that you may notice.
     When Exporting:
