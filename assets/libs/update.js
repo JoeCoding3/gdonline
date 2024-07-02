@@ -124,7 +124,7 @@ function updatePhysics () {
         }
 
         if (levelEnding && playerX > innerWidth + (playerW / 2)) endLevel()
-        else if (playerX < innerWidth / 2 || collisionBoxes[endPos].imgX - (editorGridSize / 2) <= innerWidth - editorGridSize) playerX += playerSpdX
+        else if (playerX < innerWidth / 2 || (collisionBoxes[endPos].obj == "ending" && collisionBoxes[endPos].imgX - (editorGridSize / 2) <= innerWidth - editorGridSize)) playerX += playerSpdX
         else if (playerX > innerWidth / 2) playerX = innerWidth / 2
         else {
             for (let index in collisionBoxes) {

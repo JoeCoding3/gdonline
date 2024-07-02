@@ -1,15 +1,18 @@
 Controls:
-    space: Jump
-    e: Toggle editor
-    r: Toggle editor and teleport to start of level
-    p: Toggle pause
+    Space: Jump
+    E: Toggle editor
+    R: Toggle editor and teleport to start of level
+    P: Toggle pause
 Editor Controls:
     WASD: Fly
     Scroll: Select block
     Left-Click: Place block
     Middle-Click: Remove block
     Right-Click: Place block rotated 180 degrees
-    Enter: Export level
+Editor/Level Beaten Controls:
+    O: Export level
+        Shift: Pick new file name
+    I: Import level
 Level Exporting:
     Level will auto-export when exiting editor mode, this is the small freeze that you may notice.
     When Exporting:

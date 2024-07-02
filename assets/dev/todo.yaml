@@ -1,6 +1,7 @@
 description:
     [WIP] My recreation of GD, online
 todo:
+    add actual buttons, in addition to keyboard keys/mouse buttons
     editor:
         add level importing:
             get level data from real gd:

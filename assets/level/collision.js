@@ -130,14 +130,17 @@ function respawnPlayer () {
     if (!editorEnabled) {
         playerCrashed = playerOnGround = true
         setTimeout(function () {
-            updatePlayerMode("cube")
-            loadLevel()
-
-            playerX = 0
-            playerY = innerHeight - (playerW / 2) - 128
-            playerR = 0
+            resetPlayer()
 
             playerCrashed = false
         }, 700)
     }
+}
+function resetPlayer () {
+    updatePlayerMode("cube")
+    loadLevel()
+
+    playerX = 0
+    playerY = innerHeight - (playerW / 2) - 128
+    playerR = 0
 }

@@ -109,14 +109,14 @@ async function renderLevel () {
     }
 }
 
-function startLevelExport (bypassEditor) {
+function startLevelExport (bypassEditor, saveAs) {
     if (editorEnabled || bypassEditor) {
-        let name = exportLevelName
-        if (name == undefined) name = prompt("Level name", "level")
-        if (name != null) exportLevel(name)
+        let name = saveAs ? undefined : exportLevelName
+        if (name == undefined) name = prompt("Level name to export", "level")
+        if (name != null) exportLevel(name, false, saveAs)
     }
 }
-async function exportLevel (name, noPrompt) {
+async function exportLevel (name, noPrompt, overrideHandle) {
     if (name == undefined) startLevelExport(true)
     else {
         exportLevelName = name
@@ -130,11 +130,22 @@ async function exportLevel (name, noPrompt) {
         let strObjs = JSON.stringify(levelObjs)
         let levelStr = "var level = " + strObjs + "\n"
 
-        if (exportLevelHandle == undefined) exportLevelHandle = await downloadFile(levelStr, name, "js")
+        if (exportLevelHandle == undefined || overrideHandle) exportLevelHandle = await downloadFile(levelStr, name, ".level.js")
         else await writeFile(levelStr, exportLevelHandle)
 
         exportLevelSaved = true
-        if (!noPrompt) alert("Level saved as " + name + ".js!")
+        if (!noPrompt) alert("Level saved as " + name + ".level.js!")
+    }
+}
+async function startLevelImport (bypassEditor) {
+    if (editorEnabled || bypassEditor) {
+        let name = prompt("Level name to import", "level")
+        if (name != null) {
+            levelName = name
+            resetPlayer()
+
+            if (editorEnabled) toggleEditor()
+        }
     }
 }
 

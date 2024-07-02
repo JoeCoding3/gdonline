@@ -42,5 +42,9 @@ async function loadAssets () {
 }
 async function loadLevelScript () {
     if (levelScript != undefined) levelScript.remove()
-    levelScript = await require("level/levels/" + constDefaults.levelName + ".js")
+    let name
+    if (window["levelName"] == undefined) name = constDefaults.levelName
+    else name = levelName
+    
+    levelScript = await require("level/levels/" + name + ".level.js")
 }

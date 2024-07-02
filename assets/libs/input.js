@@ -2,6 +2,7 @@ let pressingUp = false
 let pressingDown = false
 let pressingLeft = false
 let pressingRight = false
+let pressingShift = false
 onkeydown = function (ev) {
     if (ev.repeat) return
     let key = ev.key.toLowerCase()
@@ -13,7 +14,9 @@ onkeydown = function (ev) {
     else if (key == "p" && !levelEnded) togglePause()
     else if (key == "e" && !levelEnded) toggleEditor()
     else if (key == "r" && !levelEnded) toggleEditor(true)
-    else if (key == "enter" && !levelEnded) startLevelExport()
+    else if (key == "o") startLevelExport(levelEnding, pressingShift)
+    else if (key == "i") startLevelImport(levelEnding)
+    else if (key == "shift") pressingShift = true
 }
 onkeyup = function (ev) {
     let key = ev.key.toLowerCase()
@@ -22,6 +25,7 @@ onkeyup = function (ev) {
     else if (key == "s") pressingDown = false
     else if (key == "a") pressingLeft = false
     else if (key == "d") pressingRight = false
+    else if (key == "shift") pressingShift = false
 }
 
 onmousedown = function (ev) {
