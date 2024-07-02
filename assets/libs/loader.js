@@ -37,6 +37,8 @@ async function loadAssets () {
     await require("level/collision.js")
     await require("libs/update.js")
     await require("level/editor.js")
+    await require("libs/gdtojsonprops.js")
+    await require("libs/gdtojson.js")
     
     await loadLevelScript()
 }

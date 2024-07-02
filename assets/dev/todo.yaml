@@ -1,10 +1,11 @@
 description:
     [WIP] My recreation of GD, online
 todo:
-    add actual buttons, in addition to keyboard keys/mouse buttons
     editor:
-        add level importing:
-            get level data from real gd:
-                filter to map from normal gd objects to my limited set and type
+        when loading level from array:
+            find way to reload this on player death instead of from file
+        make coins respawn when entering:
+            disappear again when exit
     add error handling:
         make custom error classes in errors.js
+    add actual buttons, in addition to keyboard keys/mouse buttons
