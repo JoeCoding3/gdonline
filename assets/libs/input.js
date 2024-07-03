@@ -14,9 +14,9 @@ onkeydown = function (ev) {
     else if (key == "p" && !levelEnded) togglePause()
     else if (key == "e" && !levelEnded) toggleEditor()
     else if (key == "r" && !levelEnded) toggleEditor(true)
-    else if (key == "o") startLevelExport(levelEnding, pressingShift)
-    else if (key == "i") startLevelImport(levelEnding, pressingShift)
-    else if (key == "l") importFromReal()
+    else if (key == "o") startLevelExport(levelEnded, pressingShift)
+    else if (key == "i") startLevelImport(levelEnded, pressingShift)
+    else if (key == "l") importFromReal(levelEnded)
     else if (key == "shift") pressingShift = true
 }
 onkeyup = function (ev) {

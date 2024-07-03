@@ -161,40 +161,42 @@ function gdToJson (data) {
 	
 	return objects
 }
-async function importFromReal () {
-	let [handle] = await fileutil.file.get(".level.txt")
-	let levelData = await handle.read()
-	let converted = gdToJson(levelData)
+async function importFromReal (bypassEditor) {
+	if (editorEnabled || bypassEditor) {
+		let [handle] = await fileutil.file.get(".level.txt")
+		let levelData = await handle.read()
+		let converted = gdToJson(levelData)
 
-	let newObjs = []
-	for (let obj of converted) {
-		let id = obj.id
-		let objName
-		for (let idObj of Object.keys(gdToJsonIds)) {
-			let val = gdToJsonIds[idObj]
-			if (val.indexOf(id.toString()) != -1) {
-				objName = idObj
-				break
+		let newObjs = []
+		for (let obj of converted) {
+			let id = obj.id
+			let objName
+			for (let idObj of Object.keys(gdToJsonIds)) {
+				let val = gdToJsonIds[idObj]
+				if (val.indexOf(id.toString()) != -1) {
+					objName = idObj
+					break
+				}
+			}
+			if (objName != undefined) {
+				let imgX = obj.x * 2
+				let imgY = "innerHeight - 128 - " + (obj.y * 2)
+				let rot
+				if (obj.rotation != undefined) rot = obj.rotation
+				else if (obj.flipX || obj.flipY) rot = 180
+
+				let addObj = {
+					obj: objName,
+					imgX,
+					imgY
+				}
+				if (rot != undefined) addObj.rot = rot
+				newObjs.push(addObj)
 			}
 		}
-		if (objName != undefined) {
-			let imgX = obj.x * 2
-			let imgY = "innerHeight - 128 - " + (obj.y * 2)
-			let rot
-			if (obj.rotation != undefined) rot = obj.rotation
-			else if (obj.flipX || obj.flipY) rot = 180
 
-			let addObj = {
-				obj: objName,
-				imgX,
-				imgY
-			}
-			if (rot != undefined) addObj.rot = rot
-			newObjs.push(addObj)
-		}
+		level = newObjs
+		resetPlayer(true)
+		if (editorEnabled) toggleEditor()
 	}
-
-	level = newObjs
-	resetPlayer(true)
-	if (editorEnabled) toggleEditor()
 }

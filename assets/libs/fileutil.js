@@ -114,10 +114,12 @@ let fileutil = {
             }
         },
         download: {
-            instant: function (name, data) {
+            instant: function (name, mime, data) {
                 let elem = document.createElement("a")
-                elem.href = data
                 elem.download = name
+                let url = "data:" + mime + ";base64," + btoa(data)
+                elem.href = url
+
                 elem.click()
             },
             handle: async function (name = "", types = []) {

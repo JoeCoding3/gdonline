@@ -2,6 +2,7 @@ description:
     [WIP] My recreation of GD, online
 todo:
     editor:
+        figure out how https://gdcolon.com/gdsave/ decrypts save file
         when loading level from array:
             find way to reload this on player death instead of from file
         make coins respawn when entering:
