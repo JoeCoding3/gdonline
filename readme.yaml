@@ -26,6 +26,10 @@ Level Exporting:
         Save the level file in gdonline/assets/level/levels.
         The level will download with a .js extension, don't change it.
         You can rename the file to change the level name.
+Importing from real GD:
+    Go to C:\Users\[NAME]\AppData\Local\GeometryDash (replace [NAME] with your username).
+    Select CCLocalLevels.dat.
+    Enter the index of the level you want to load.
 Config:
     File is gdonline/assets/options.js.
     Options:

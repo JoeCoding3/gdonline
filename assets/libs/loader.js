@@ -39,6 +39,9 @@ async function loadAssets () {
     await require("level/editor.js")
     await require("libs/gdtojsonprops.js")
     await require("libs/gdtojson.js")
+    await require("libs/importgdkeys.js")
+    await require("libs/importgd.js")
+    await require("libs/pako.js")
     
     await loadLevelScript()
 }

@@ -76,7 +76,7 @@ function gdToJsonParseObj (obj, nameArr) {
 					value = value != "0"
 					break
 				case "string":
-					value = Buffer.from(value, "base64").toString()
+					value = atob(value)
 					break
 				case "array":
 					value = value.split(".").map(x => Number(x))
@@ -163,8 +163,12 @@ function gdToJson (data) {
 }
 async function importFromReal (bypassEditor) {
 	if (editorEnabled || bypassEditor) {
-		let [handle] = await fileutil.file.get(".level.txt")
-		let levelData = await handle.read()
+        if (levelTable == "") {
+            let [handle] = await fileutil.file.get(".dat")
+            await importSave(handle)
+        }
+		let index = prompt(getNames().join("\n"))
+		let levelData = getLevel(index)
 		let converted = gdToJson(levelData)
 
 		let newObjs = []
