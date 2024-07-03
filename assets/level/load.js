@@ -102,10 +102,10 @@ async function renderLevel () {
         let r = box.rot
         let o = box.repeat ? 2 : 0
 
-        if (box.img == undefined) {
+        if (objImgs[box.obj] == undefined) {
             let path = "./assets/sprites/" + box.texture + ".png"
-            box.img = await canvas.img(x, y, path, w, h, rW, rH, r, o)
-        } else canvas.img(x, y, box.img, w, h, rW, rH, r, o)
+            objImgs[box.obj] = await canvas.img(x, y, path, w, h, rW, rH, r, o)
+        } else canvas.img(x, y, objImgs[box.obj], w, h, rW, rH, r, o)
     }
 }
 

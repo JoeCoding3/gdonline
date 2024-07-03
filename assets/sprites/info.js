@@ -154,3 +154,4 @@ registerConsts({
         text: "lightgray"
     }
 })
+let objImgs = {}

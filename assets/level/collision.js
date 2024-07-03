@@ -143,4 +143,7 @@ function resetPlayer (noScript) {
     playerX = 0
     playerY = innerHeight - (playerW / 2) - 128
     playerR = 0
+    
+    levelEnded = false
+    levelEnding = false
 }

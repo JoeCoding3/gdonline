@@ -48,7 +48,7 @@ function tick () {
 }
 async function updateGraphics () {
     playerCanvas.clear()
-
+    
     if (editorEnabled) {
         calculateEditorOffset()
         for (let x = editorGridX; x <= innerWidth; x += editorGridSize) playerCanvas.rect(x, innerHeight / 2, 2, innerHeight, objTypeHitCols.editor)

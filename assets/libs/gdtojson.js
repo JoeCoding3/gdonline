@@ -179,18 +179,15 @@ async function importFromReal (bypassEditor) {
 				}
 			}
 			if (objName != undefined) {
-				let imgX = obj.x * 2
-				let imgY = "innerHeight - 128 - " + (obj.y * 2)
-				let rot
-				if (obj.rotation != undefined) rot = obj.rotation
-				else if (obj.flipX || obj.flipY) rot = 180
-
+				let imgX = obj.x * editorGridSize / 30
+				let imgY = (obj.y * editorGridSize / 30) + (obj.id == 40 ? -16 : 0) + (obj.id == 9 ? 8 : 0) + (objName == "halfSpike" ? 1.5 : 0)
+				
 				let addObj = {
 					obj: objName,
 					imgX,
-					imgY
+					imgY: "innerHeight - 128 - " + imgY
 				}
-				if (rot != undefined) addObj.rot = rot
+				if (obj.rotation == 180 || obj.flipX || obj.flipY) addObj.rot = 180
 				newObjs.push(addObj)
 			}
 		}

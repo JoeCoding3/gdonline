@@ -2,7 +2,7 @@ function degToRad (deg) {
     return deg * (Math.PI / 180)
 }
 
-function snapToGrid (val, unit, offset) {
+function snapToGrid (val, unit, offset = 0) {
     let offsetVal = val - offset
     let div = Math.floor(offsetVal / unit)
     return (div * unit) + (unit / 2) + offset

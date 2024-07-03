@@ -1,8 +1,12 @@
 description:
     [WIP] My recreation of GD, online
 todo:
+    make cube physics more accurate to fix the impossible jump in Stereo Madness
+    make ship physics better
+    fix ship infinite rotation glitch
+    prevent player from crashing from head collision in ship mode
     editor:
-        figure out how https://gdcolon.com/gdsave/ decrypts save file
+        prevent player from going before start of level
         when loading level from array:
             find way to reload this on player death instead of from file
         make coins respawn when entering:
