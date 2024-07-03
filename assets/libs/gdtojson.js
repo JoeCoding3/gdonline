@@ -168,36 +168,38 @@ async function importFromReal (bypassEditor) {
             await importSave(handle)
         }
 		let index = prompt(getNames().join("\n"))
-		let levelData = getLevel(index)
-		let converted = gdToJson(levelData)
+		if (index != null) {
+			let levelData = getLevel(index)
+			let converted = gdToJson(levelData)
 
-		let newObjs = []
-		for (let obj of converted) {
-			let id = obj.id
-			let objName
-			for (let idObj of Object.keys(gdToJsonIds)) {
-				let val = gdToJsonIds[idObj]
-				if (val.indexOf(id.toString()) != -1) {
-					objName = idObj
-					break
+			let newObjs = []
+			for (let obj of converted) {
+				let id = obj.id
+				let objName
+				for (let idObj of Object.keys(gdToJsonIds)) {
+					let val = gdToJsonIds[idObj]
+					if (val.indexOf(id.toString()) != -1) {
+						objName = idObj
+						break
+					}
+				}
+				if (objName != undefined) {
+					let imgX = obj.x * editorGridSize / 30
+					let imgY = (obj.y * editorGridSize / 30) + (obj.id == 40 ? -16 : 0) + (obj.id == 9 ? 8 : 0) + (objName == "halfSpike" ? 1.5 : 0)
+					
+					let addObj = {
+						obj: objName,
+						imgX,
+						imgY: "innerHeight - 128 - " + imgY
+					}
+					if (obj.rotation == 180 || obj.flipX || obj.flipY) addObj.rot = 180
+					newObjs.push(addObj)
 				}
 			}
-			if (objName != undefined) {
-				let imgX = obj.x * editorGridSize / 30
-				let imgY = (obj.y * editorGridSize / 30) + (obj.id == 40 ? -16 : 0) + (obj.id == 9 ? 8 : 0) + (objName == "halfSpike" ? 1.5 : 0)
-				
-				let addObj = {
-					obj: objName,
-					imgX,
-					imgY: "innerHeight - 128 - " + imgY
-				}
-				if (obj.rotation == 180 || obj.flipX || obj.flipY) addObj.rot = 180
-				newObjs.push(addObj)
-			}
+
+			level = newObjs
+			resetPlayer(true)
+			if (editorEnabled) toggleEditor()
 		}
-
-		level = newObjs
-		resetPlayer(true)
-		if (editorEnabled) toggleEditor()
 	}
 }
