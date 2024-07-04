@@ -287,12 +287,5 @@ let fileutil = {
             let keys = await storageKeys()
             return keys
         }
-    },
-    init: function () {
-        let src = document.currentScript.src
-        let script = document.createElement("script")
-        script.src = src.replace(/fileutil/i, "idb")
-        document.body.append(script)
     }
 }
-fileutil.init()

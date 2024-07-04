@@ -3,6 +3,9 @@ description:
 todo:
     add jump pads to play Back on Track (called 'bump' in sprites)
 
+    make level files stored as .level.txt not .level.js:
+        (bypasses uncommen file popup)
+        not sure if necessary, but might need to use <script type="text/javascript"></script>
     ship gamemode:
         improve physics:
             make fall/fly faster

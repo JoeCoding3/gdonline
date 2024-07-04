@@ -1,6 +1,7 @@
 let exportLevelHandle
 let exportLevelName
 let exportLevelSaved = true
+let level = []
 async function loadLevel (noScript) {
     if (!noScript) await loadLevelScript()
 
@@ -128,7 +129,7 @@ async function exportLevel (name, noPrompt, overrideHandle) {
         }
 
         let strObjs = JSON.stringify(levelObjs)
-        let levelStr = "var level = " + strObjs + "\n"
+        let levelStr = "level=" + strObjs + "\n"
 
         if (exportLevelHandle == undefined || overrideHandle) exportLevelHandle = await downloadFile(levelStr, name, ".level.js")
         else await writeFile(levelStr, exportLevelHandle)

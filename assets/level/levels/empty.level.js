@@ -1,1 +1,1 @@
-var level = []
+level=[]
