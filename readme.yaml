@@ -1,6 +1,6 @@
 Developers:
-    Joe Michael (main)
-    Jack Rocco (feedback/assistance)
+    Main: Joe Michael
+    Feedback/Assistance: Jack Rocco
 Controls:
     Space: Jump
     E: Toggle editor
@@ -28,7 +28,7 @@ Level Exporting:
         You can rename the file to change the level name.
 Importing from real GD:
     This allows you to import your saved levels.
-    To import official levels, I would recommend cloning levels from the account RobsVault.
+    To import official levels, I would recommend cloning levels from the GD account RobsVault.
     Every time you change your custom levels in real GD, and before using this feature:
         Go to C:\Users\[NAME]\AppData\Local\GeometryDash (replace [NAME] with your username).
         Copy CCLocalLevels.dat to gdonline/assets/level/save.
@@ -50,6 +50,6 @@ Notes:
     FPS counter and game status indicator in top left corner.
     Enjoy!
 Disclaimers:
-    This project is not associated in any way with the account RobsVault.
     This project is not real Geometry Dash, only a fangame.
     This project is not endorsed by RobTop.
+    This project is not associated in any way with the GD account RobsVault.

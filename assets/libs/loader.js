@@ -3,7 +3,7 @@ async function require (path) {
     return new Promise(function (resolve) {
         path = "./assets/" + path
         let elem
-        if (path.endsWith(".js")) {
+        if (path.endsWith(".js") || path.endsWith(".txt")) {
             elem = document.createElement("script")
             elem.src = path
             
@@ -43,8 +43,6 @@ async function loadAssets () {
     await require("libs/importgdkeys.js")
     await require("libs/importgd.js")
     await require("libs/pako.js")
-    
-    await loadLevelScript()
 }
 async function loadLevelScript () {
     if (levelScript != undefined) levelScript.remove()
@@ -52,5 +50,5 @@ async function loadLevelScript () {
     if (window["levelName"] == undefined) name = constDefaults.levelName
     else name = levelName
     
-    levelScript = await require("level/levels/" + name + ".level.js")
+    levelScript = await require("level/levels/" + name + ".level.txt")
 }

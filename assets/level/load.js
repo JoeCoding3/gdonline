@@ -131,11 +131,11 @@ async function exportLevel (name, noPrompt, overrideHandle) {
         let strObjs = JSON.stringify(levelObjs)
         let levelStr = "level=" + strObjs + "\n"
 
-        if (exportLevelHandle == undefined || overrideHandle) exportLevelHandle = await downloadFile(levelStr, name, ".level.js")
+        if (exportLevelHandle == undefined || overrideHandle) exportLevelHandle = await downloadFile(levelStr, name, ".level.txt")
         else await writeFile(levelStr, exportLevelHandle)
 
         exportLevelSaved = true
-        if (!noPrompt) alert("Level saved as " + name + ".level.js!")
+        if (!noPrompt) alert("Level saved as " + name + ".level.txt!")
     }
 }
 async function startLevelImport (bypassEditor, filePicker) {
@@ -143,7 +143,7 @@ async function startLevelImport (bypassEditor, filePicker) {
 
     if (editorEnabled || bypassEditor) {
         if (filePicker) {
-            let [handle] = await fileutil.file.get(".level.js")
+            let [handle] = await fileutil.file.get(".level.txt")
             let content = await handle.read()
             level = Function(content + "; return level")()
 

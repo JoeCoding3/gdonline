@@ -56,7 +56,7 @@ async function updateGraphics () {
     }
     if (playerImg == undefined) playerImg = await playerCanvas.img(playerX, playerY, playerSrc, playerW, playerW, playerW, playerW, playerR)
     else playerCanvas.img(playerX, playerY, playerImg, playerW, playerW, playerW, playerW, playerR)
-    if (showHitboxes) playerCanvas.rect(playerX, playerY, playerW, playerW, objTypeHitCols.player, playerR, 2)
+    if (showHitboxes) playerCanvas.rect(playerX, playerY, playerW, playerW, objTypeHitCols.player, 0, 2)
 
     if (!pauseEnabled) {
         renderLevel()
