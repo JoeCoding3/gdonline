@@ -16,7 +16,7 @@ let levelEnding = false
 let levelEnded = false
 registerConsts({
     playerGrav: 0.8,
-    playerGravShip: 0.24,
+    playerGravShip: 0.36,
     playerJumpVel: 14.5,
     playerJumpVelShip: 4.8,
     playerRSpd: 4.7,
@@ -28,7 +28,7 @@ registerConsts({
     playerShipRotUp: 325,
     playerShipRotDown: 390,
     playerShipRMulUp: 2.5,
-    playerShipRMulDown: 0.8
+    playerShipRMulDown: 2.5
 })
 function tick () {
     let currentFrameTime = performance.now()
@@ -145,16 +145,15 @@ function updatePhysics () {
         playerY += playerSpdY
         checkCollision()
 
-        if (playerOnGround) {
-            if (isShip || editorEnabled) playerR = 0
+        if (playerOnGround || (shipOnCeiling && pressingUp)) {
+            if (isShip || editorEnabled) playerR = 360
             else {
                 playerR = Math.round(playerR / 90) * 90
                 playerSpdY = 0
             }
         } else {
-            if (editorEnabled) playerR = 0
+            if (editorEnabled) playerR = 360
             else if (isShip) {
-                if (playerR == 0) playerR = 360
                 if (pressingUp && playerR > playerShipRotUp) playerR -= (playerShipPressTime * playerShipRMulUp)
                 else if (!pressingUp && playerR < playerShipRotDown) playerR += (playerShipFallTime * playerShipRMulDown)
             } else playerR += playerRSpd
@@ -177,6 +176,7 @@ function updatePlayerMode (mode) {
     if (playerMode != mode && mode != null) {
         playerMode = mode
         playerSrc = "./assets/sprites/player/" + mode + ".png"
+        playerR = 360
 
         let img = new Image()
         img.src = playerSrc

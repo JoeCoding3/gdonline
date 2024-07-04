@@ -1,4 +1,5 @@
 let playerOnGround = true
+let shipOnCeiling = false
 let playerCrashed = false
 let playerCoins = 0
 let collisionBoxes = []
@@ -31,7 +32,13 @@ function checkHeadCollision () {
                 colliding = x1 && x2 && y1 && y2
                 
                 if (bT == "deco") continue
-                if ((bT == "ground" || bT == "spike") && colliding) respawnPlayer()
+                if (bT == "spike" && colliding) respawnPlayer()
+                if (bT == "ground") {
+                    if (playerMode == "ship") {
+                        shipOnCeiling = colliding
+                        if (shipOnCeiling) playerY = bY + bH + (playerW / 2) + 1
+                    } else if (colliding) respawnPlayer()
+                }
                 if (bT == "coin" && colliding && !editorEnabled) {
                     playerCoins++
                     collisionBoxes.splice(index, 1)
@@ -129,6 +136,7 @@ function checkWallCollision () {
 function respawnPlayer () {
     if (!editorEnabled) {
         playerCrashed = playerOnGround = true
+        shipOnCeiling = false
         setTimeout(function () {
             resetPlayer()
 

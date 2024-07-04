@@ -1,14 +1,8 @@
 description:
     [WIP] My recreation of GD, online
 todo:
-    add jump pads to play Back on Track (called 'bump' in sprites)
+    add jump pads to play Back on Track (called 'bump's in sprites)
 
-    get jack's permission to put his name in the devs list
-    ship gamemode:
-        improve physics:
-            make fall/fly faster
-        fix infinite rotation glitch
-        prevent crashing from head collision
     editor:
         prevent player from going before start of level
         when loading level from array:
