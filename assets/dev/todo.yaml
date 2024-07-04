@@ -1,10 +1,13 @@
 description:
     [WIP] My recreation of GD, online
 todo:
-    make cube physics more accurate to fix the impossible jump in Stereo Madness
-    make ship physics better
-    fix ship infinite rotation glitch
-    prevent player from crashing from head collision in ship mode
+    add jump pads to play Back on Track (called 'bump' in sprites)
+
+    ship gamemode:
+        improve physics:
+            make fall/fly faster
+        fix infinite rotation glitch
+        prevent crashing from head collision
     editor:
         prevent player from going before start of level
         when loading level from array:

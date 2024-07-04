@@ -17,7 +17,7 @@ let levelEnded = false
 registerConsts({
     playerGrav: 0.8,
     playerGravShip: 0.24,
-    playerJumpVel: 15,
+    playerJumpVel: 14.5,
     playerJumpVelShip: 4.8,
     playerRSpd: 4.7,
     playerYSpdCap: 25,

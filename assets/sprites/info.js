@@ -98,6 +98,15 @@ registerConsts({
             type: "spike",
             texture: "spike/smallSpike"
         },
+        tinySpike: {
+            hitY: -2,
+            hitW: 5,
+            hitH: 10,
+            imgW: 25,
+            imgH: 24,
+            type: "spike",
+            texture: "spike/tinySpike"
+        },
         coin: {
             hitW: 80,
             hitH: 80,

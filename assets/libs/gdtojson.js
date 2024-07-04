@@ -185,7 +185,7 @@ async function importFromReal (bypassEditor) {
 				}
 				if (objName != undefined) {
 					let imgX = obj.x * editorGridSize / 30
-					let imgY = (obj.y * editorGridSize / 30) + (obj.id == 40 ? -16 : 0) + (obj.id == 9 ? 8 : 0) + (objName == "halfSpike" ? 1.5 : 0)
+					let imgY = (obj.y * editorGridSize / 30) + (id == 40 ? -16 : 0) + (id == 9 ? 8 : 0) + (objName == "halfSpike" ? 1.5 : 0)
 					
 					let addObj = {
 						obj: objName,
