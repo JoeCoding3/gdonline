@@ -28,7 +28,8 @@ registerConsts({
     playerShipRotUp: 325,
     playerShipRotDown: 390,
     playerShipRMulUp: 2.5,
-    playerShipRMulDown: 2.5
+    playerShipRMulDown: 2.5,
+    padYellowJumpVel: 22
 })
 function tick () {
     let currentFrameTime = performance.now()
@@ -170,6 +171,10 @@ function updatePhysics () {
             else playerSpdX = 0
         }
     }
+}
+function padBoostPlayer (mode) {
+    playerOnGround = false
+    if (mode == "yellow") playerSpdY = -padYellowJumpVel
 }
 
 function updatePlayerMode (mode) {

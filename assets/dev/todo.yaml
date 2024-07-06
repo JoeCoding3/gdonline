@@ -1,9 +1,6 @@
 description:
     [WIP] My recreation of GD, online
 todo:
-    add jump pads to play Back on Track (called 'bump's in sprites)
-
-    add coin counter in top right corner
     make player hitbox smaller:
         (can go through 1 block gap)
         use playerW to calculate landing on blocks so icon doesn't clip through

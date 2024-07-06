@@ -178,14 +178,20 @@ async function importFromReal (bypassEditor) {
 				let objName
 				for (let idObj of Object.keys(gdToJsonIds)) {
 					let val = gdToJsonIds[idObj]
-					if (val.indexOf(id.toString()) != -1) {
+					if (val.indexOf(id) != -1) {
 						objName = idObj
 						break
 					}
 				}
 				if (objName != undefined) {
 					let imgX = obj.x * editorGridSize / 30
-					let imgY = (obj.y * editorGridSize / 30) + (id == 40 ? -16 : 0) + (id == 9 ? 8 : 0) + (objName == "halfSpike" ? 1.5 : 0)
+					let imgY = obj.y * editorGridSize / 30
+					let moveY = 0
+					for (let mv of Object.keys(gdToJsonMoves)) {
+						let val = gdToJsonMoves[mv]
+						if (val.indexOf(id) != -1 || val.indexOf(objName) != -1) moveY += +mv
+					}
+					imgY += moveY
 					
 					let addObj = {
 						obj: objName,

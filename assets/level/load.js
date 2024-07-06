@@ -82,7 +82,7 @@ function cBoxToLevelObj (cBox) {
 }
 function assignValues (target, source) {
     for (let sourceKey of Object.keys(source)) {
-        let sourceVal = source[sourceKey]
+        let sourceVal = structuredClone(source)[sourceKey]
         let origSourceVal = sourceVal
         if (sourceKey != "obj" && sourceKey != "type" && sourceKey != "texture") sourceVal = eval(sourceVal)
         target[sourceKey] = sourceVal

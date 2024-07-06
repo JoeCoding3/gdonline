@@ -133,6 +133,15 @@ registerConsts({
             special: {
                 mode: "ship"
             }
+        },
+        yellowPad: {
+            hitW: 50,
+            hitH: 8,
+            type: "pad",
+            texture: "pad/yellowPad",
+            special: {
+                mode: "yellow"
+            }
         }
     },
     defaultObjGlobalInfo: {
@@ -158,6 +167,7 @@ registerConsts({
         spike: "red",
         portal: "orange",
         coin: "yellow",
+        pad: "lightgreen",
         ending: "brown",
         editor: "gray",
         text: "lightgray"
