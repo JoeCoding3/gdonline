@@ -5,7 +5,7 @@ onload = function () {
     loader.onload = async function () {
         await loadAssets()
         registerConsts({
-            playerW: 60
+            playerW: 59
         })
         assignConsts()
     
