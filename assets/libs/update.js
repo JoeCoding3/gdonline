@@ -124,7 +124,9 @@ function updatePhysics () {
             if (playerShipFallTime >= playerShipPressCap) playerShipFallTime = playerShipPressCap
         }
 
-        if (levelEnding && playerX > innerWidth + (playerW / 2)) endLevel()
+        calculateStartOffset()
+        if (editorEnabled && levelStartOffset >= 0 && pressingLeft && playerX > playerW / 2) playerX -= constDefaults.playerSpdX
+        else if (levelEnding && playerX > innerWidth + (playerW / 2)) endLevel()
         else if (playerX < innerWidth / 2 || (collisionBoxes[endPos].obj == "ending" && collisionBoxes[endPos].imgX - (editorGridSize / 2) <= innerWidth - editorGridSize)) playerX += playerSpdX
         else if (playerX > innerWidth / 2) playerX = innerWidth / 2
         else {
@@ -166,7 +168,7 @@ function updatePhysics () {
         }
 
         if (editorEnabled) {
-            if (pressingLeft) playerSpdX = -constDefaults.playerSpdX
+            if (pressingLeft && levelStartOffset < 0) playerSpdX = -constDefaults.playerSpdX
             else if (pressingRight) playerSpdX = constDefaults.playerSpdX
             else playerSpdX = 0
         }

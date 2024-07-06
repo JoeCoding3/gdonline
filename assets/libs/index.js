@@ -14,7 +14,7 @@ onload = function () {
         canvas.init()
         playerCanvas.init(innerWidth, innerHeight, 0, 0)
     
-        resize()
+        await resize()
         playerX = -playerW / 2
         playerY = innerHeight - (playerW / 2) - 128
     
@@ -23,11 +23,11 @@ onload = function () {
     }
 }
 
-function resize (ev) {
+async function resize (ev) {
     canvas.setSize(innerWidth, innerHeight)
     playerCanvas.setSize(innerWidth, innerHeight)
 
-    loadLevel()
+    await loadLevel()
     if (ev != undefined) updateGraphics()
 }
 onresize = resize

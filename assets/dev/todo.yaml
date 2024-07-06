@@ -6,11 +6,8 @@ todo:
     add ceiling after ship portal:
         remove after cube portal
     editor:
-        prevent player from going before start of level
         when loading level from array:
             find way to reload this on player death instead of from file
-        make coins respawn when entering:
-            disappear again when exit
     add error handling:
         make custom error classes in errors.js
     add actual buttons, in addition to keyboard keys/mouse buttons
