@@ -1,6 +1,13 @@
 description:
     [WIP] My recreation of GD, online
 todo:
+    add ceiling after ship portal:
+        remove after cube portal
+    add 90-degree rotation:
+        hold shift while clicking/right-clicking to add 90 degrees
+    when loading level from save file:
+        set block properties to include gridX and gridY to allow removing off-grid blocks in editor
+        maybe? but can't re-place though...
     editor:
         prevent player from going before start of level
         when loading level from array:

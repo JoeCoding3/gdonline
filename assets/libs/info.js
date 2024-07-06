@@ -140,7 +140,8 @@ registerConsts({
             type: "pad",
             texture: "pad/yellowPad",
             special: {
-                mode: "yellow"
+                mode: "yellow",
+                activated: false
             }
         }
     },
