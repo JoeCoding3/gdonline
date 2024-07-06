@@ -17,6 +17,8 @@ function checkHeadCollision () {
 
             for (let index in collisionBoxes) {
                 let box = collisionBoxes[index]
+                if (box.noRender) continue
+
                 let bX = box.hitX
                 let bY = box.hitY
                 let bW = box.hitW
@@ -40,8 +42,8 @@ function checkHeadCollision () {
                     } else if (colliding) respawnPlayer()
                 }
                 if (bT == "coin" && colliding && !editorEnabled) {
+                    collisionBoxes[index].noRender = true
                     playerCoins++
-                    collisionBoxes.splice(index, 1)
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
                 if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
@@ -62,6 +64,8 @@ function checkGroundCollision () {
 
             for (let index in collisionBoxes) {
                 let box = collisionBoxes[index]
+                if (box.noRender) continue
+                
                 let bX = box.hitX
                 let bY = box.hitY
                 let bW = box.hitW
@@ -83,8 +87,8 @@ function checkGroundCollision () {
                 }
                 if (bT == "spike" && colliding) respawnPlayer()
                 if (bT == "coin" && colliding && !editorEnabled) {
+                    collisionBoxes[index].noRender = true
                     playerCoins++
-                    collisionBoxes.splice(index, 1)
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
                 if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
@@ -105,6 +109,8 @@ function checkWallCollision () {
 
             for (let index in collisionBoxes) {
                 let box = collisionBoxes[index]
+                if (box.noRender) continue
+                
                 let bX = box.hitX
                 let bY = box.hitY
                 let bW = box.hitW
@@ -122,8 +128,8 @@ function checkWallCollision () {
                 if (bT == "deco") continue
                 if ((bT == "ground" || bT == "spike") && colliding) respawnPlayer()
                 if (bT == "coin" && colliding && !editorEnabled) {
+                    collisionBoxes[index].noRender = true
                     playerCoins++
-                    collisionBoxes.splice(index, 1)
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
                 if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
