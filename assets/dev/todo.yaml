@@ -15,3 +15,5 @@ todo:
         make custom error classes in errors.js
     add actual buttons, in addition to keyboard keys/mouse buttons
     try remaking using classes
+    add music:
+        make fps more stable so music can sync
