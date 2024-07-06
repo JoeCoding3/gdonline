@@ -198,7 +198,9 @@ async function importFromReal (bypassEditor) {
 						imgX,
 						imgY: "innerHeight-128- " + imgY
 					}
-					if (obj.rotation == 180 || obj.flipX || obj.flipY) addObj.rot = 180
+					if (obj.rotation < 0) obj.rotation += 360
+					if (obj.rotation == 90 || obj.rotation == 180 || obj.rotation == 270) addObj.rot = obj.rotation
+					else if (obj.flipX || obj.flipY) addObj.rot = 180
 					newObjs.push(addObj)
 				}
 			}

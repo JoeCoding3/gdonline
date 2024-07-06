@@ -34,7 +34,8 @@ onmousedown = function (ev) {
         let x = ev.clientX
         let y = ev.clientY
         let btn = ev.button
-        click(btn, x, y)
+        let shift = ev.shiftKey
+        click(btn, x, y, shift)
     }
 }
 oncontextmenu = ev => ev.preventDefault()

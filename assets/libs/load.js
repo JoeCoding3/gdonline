@@ -29,9 +29,26 @@ function addCollisionBox (levelObj, noAdd) {
     if (boxObj.resizeH == undefined) boxObj.resizeH = boxObj.imgH
     
     if (!boxObj.repeat) {
-        if (boxObj.rot == 180) {
+        if (boxObj.rot == 90) {
+            let x = boxObj.hitX
+            boxObj.hitX = boxObj.hitY
+            boxObj.hitY = x
+            let w = boxObj.hitW
+            boxObj.hitW = boxObj.hitH
+            boxObj.hitH = w
+
+            boxObj.hitX *= -1
+            boxObj.hitX -= boxObj.hitW
+        } else if (boxObj.rot == 180) {
             boxObj.hitY *= -1
             boxObj.hitY -= boxObj.hitH
+        } else if (boxObj.rot == 270) {
+            let x = boxObj.hitX
+            boxObj.hitX = boxObj.hitY
+            boxObj.hitY = x
+            let w = boxObj.hitW
+            boxObj.hitW = boxObj.hitH
+            boxObj.hitH = w
         }
         boxObj.hitX += boxObj.imgX
         boxObj.hitY += boxObj.imgY

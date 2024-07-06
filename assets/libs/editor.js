@@ -58,7 +58,7 @@ async function toggleEditor (restart) {
         }
     }
 }
-function click (btn, x, y) {
+function click (btn, x, y, rot90) {
     exportLevelSaved = false
     calculateStartOffset()
     
@@ -75,6 +75,7 @@ function click (btn, x, y) {
                 obj: currentBlock,
                 imgX: gridX,
                 imgY: y,
+                rot: rot90 ? 270 : 0,
                 orig_imgX: gridX - levelStartOffset
             })
         }
@@ -95,7 +96,7 @@ function click (btn, x, y) {
                 obj: currentBlock,
                 imgX: gridX,
                 imgY: y,
-                rot: 180,
+                rot: rot90 ? 90 : 180,
                 orig_imgX: gridX - levelStartOffset
             })
         }
