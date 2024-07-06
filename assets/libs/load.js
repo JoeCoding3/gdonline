@@ -65,7 +65,7 @@ function cBoxToLevelObj (cBox) {
         for (let key of keys) {
             let val = cBox[key]
             let subKey = key.substring(5)
-            if (key.startsWith("orig_") && val != defaultObjGlobalInfo[subKey] && val != defaultObjInfo[objName][subKey] && subKey != "obj") lObj[subKey] = val
+            if (key.startsWith("orig_") && val != defaultObjGlobalInfo[subKey] && val != defaultObjInfo[objName][subKey] && subKey != "obj" && subKey != "special") lObj[subKey] = val
         }
 
         if (lObj.hitX == lObj.hitW / -2) delete lObj.hitX
@@ -82,7 +82,7 @@ function cBoxToLevelObj (cBox) {
 }
 function assignValues (target, source) {
     for (let sourceKey of Object.keys(source)) {
-        let sourceVal = structuredClone(source)[sourceKey]
+        let sourceVal = source[sourceKey]
         let origSourceVal = sourceVal
         if (sourceKey != "obj" && sourceKey != "type" && sourceKey != "texture") sourceVal = eval(sourceVal)
         target[sourceKey] = sourceVal

@@ -44,10 +44,7 @@ function checkHeadCollision () {
                     collisionBoxes.splice(index, 1)
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
-                if (bT == "pad" && colliding && !bS.activated) {
-                    padBoostPlayer(bS.mode)
-                    collisionBoxes[index].special.activated = true
-                }
+                if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
 
                 if (colliding && (bT == "ground" || bT == "spike")) break
             }
@@ -90,10 +87,7 @@ function checkGroundCollision () {
                     collisionBoxes.splice(index, 1)
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
-                if (bT == "pad" && colliding && !bS.activated) {
-                    padBoostPlayer(bS.mode)
-                    collisionBoxes[index].special.activated = true
-                }
+                if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
 
                 if (colliding && (bT == "ground" || bT == "spike")) break
             }
@@ -132,10 +126,7 @@ function checkWallCollision () {
                     collisionBoxes.splice(index, 1)
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
-                if (bT == "pad" && colliding && !bS.activated) {
-                    padBoostPlayer(bS.mode)
-                    collisionBoxes[index].special.activated = true
-                }
+                if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
 
                 if (colliding && (bT == "ground" || bT == "spike")) break
             }

@@ -135,13 +135,13 @@ registerConsts({
             }
         },
         yellowPad: {
-            hitW: 50,
+            imgW: 50,
+            hitW: 60,
             hitH: 8,
             type: "pad",
             texture: "pad/yellowPad",
             special: {
-                mode: "yellow",
-                activated: false
+                mode: "yellow"
             }
         }
     },

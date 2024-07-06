@@ -196,7 +196,7 @@ async function importFromReal (bypassEditor) {
 					let addObj = {
 						obj: objName,
 						imgX,
-						imgY: "innerHeight - 128 - " + imgY
+						imgY: "innerHeight-128- " + imgY
 					}
 					if (obj.rotation == 180 || obj.flipX || obj.flipY) addObj.rot = 180
 					newObjs.push(addObj)

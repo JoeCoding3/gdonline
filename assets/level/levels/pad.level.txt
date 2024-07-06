@@ -1,1 +1,0 @@
-level=[{"obj":"yellowPad","imgX":390,"imgY":779,"orig_imgX":390},{"obj":"block","imgX":570,"imgY":573,"orig_imgX":570}]
