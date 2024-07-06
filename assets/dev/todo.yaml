@@ -1,7 +1,8 @@
 description:
     [WIP] My recreation of GD, online
 todo:
-    use idb to remember file handles for levels and save directories so user only selects once
+    use idb to remember file handles for levels and save directories:
+        user only selects folders once
     add ceiling after ship portal:
         remove after cube portal
     editor:
@@ -13,3 +14,4 @@ todo:
     add error handling:
         make custom error classes in errors.js
     add actual buttons, in addition to keyboard keys/mouse buttons
+    try remaking using classes
