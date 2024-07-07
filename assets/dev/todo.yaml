@@ -9,6 +9,9 @@ todo:
     add ceiling after ship portal:
         remove after cube portal
     
+    make player faster:
+        try playerSpdX=10
+        change gravity, jump pad strength, etc.
     add error handling:
         make custom error classes in errors.js
         add console logging/warning/debugging for lots of things

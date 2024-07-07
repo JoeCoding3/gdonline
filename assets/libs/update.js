@@ -16,19 +16,19 @@ let levelEnding = false
 let levelEnded = false
 registerConsts({
     playerGrav: 0.85,
-    playerGravShip: 0.5,
+    playerGravShip: 0.35,
     playerJumpVel: 14.5,
-    playerJumpVelShip: 4.8,
+    playerJumpVelShip: 5.5,
     playerRSpd: 4.7,
     playerYSpdCap: 25,
     playerSpdX: 7,
-    playerShipPressMul: 0.045,
-    playerShipFallMul: 0.03,
+    playerShipPressMul: 0.05,
+    playerShipFallMul: 0.04,
     playerShipPressCap: 2.8,
-    playerShipRotUp: 325,
-    playerShipRotDown: 390,
-    playerShipRMulUp: 5,
-    playerShipRMulDown: 5,
+    playerShipRotUp: 335,
+    playerShipRotDown: 400,
+    playerShipRMulUp: 2.8,
+    playerShipRMulDown: 3,
     padYellowJumpVel: 23
 })
 function tick () {
