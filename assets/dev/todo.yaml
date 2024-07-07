@@ -1,10 +1,16 @@
 description:
     [WIP] My recreation of GD, online
 todo:
+    show number of coins collected on level complete screen
+    add a percent counter/progress bar:
+        top middle of screen
+    fix ship sticking to ceiling
     add ceiling after ship portal:
         remove after cube portal
+    
     add error handling:
         make custom error classes in errors.js
+        add console logging/warning/debugging for lots of things
     add actual buttons, in addition to keyboard keys/mouse buttons
     try remaking using classes
     add music:

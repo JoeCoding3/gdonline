@@ -15,7 +15,7 @@ let editorIcons = []
 let levelEnding = false
 let levelEnded = false
 registerConsts({
-    playerGrav: 0.8,
+    playerGrav: 0.85,
     playerGravShip: 0.36,
     playerJumpVel: 14.5,
     playerJumpVelShip: 4.8,
@@ -29,7 +29,7 @@ registerConsts({
     playerShipRotDown: 390,
     playerShipRMulUp: 2.5,
     playerShipRMulDown: 2.5,
-    padYellowJumpVel: 22
+    padYellowJumpVel: 23
 })
 function tick () {
     let currentFrameTime = performance.now()
