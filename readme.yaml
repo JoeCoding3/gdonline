@@ -45,6 +45,8 @@ Cursor:
     Invisible while playing.
     Default when paused.
     Pointer when editing.
+Misc:
+    You can only place 3 coins per level.
 Notes:
     Does not need to be run on a server.
     FPS counter and game status indicator in top left corner.
