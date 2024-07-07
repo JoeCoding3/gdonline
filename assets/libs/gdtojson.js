@@ -171,7 +171,7 @@ async function importFromReal (bypassEditor, forceSelect) {
 			}
             await importSave(handle)
         }
-		let index = prompt(getNames().join("\n"))
+		let index = prompt(getNames().join("\n"), "0")
 		if (index != null) {
 			let levelData = getLevel(index)
 			let converted = gdToJson(levelData)
