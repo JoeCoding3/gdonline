@@ -27,8 +27,8 @@ function alignObjY (origY, imgH, flip) {
     return flip ? origY - change : origY + change
 }
 
-async function downloadFile (data, name, extension) {
-    let handle = await fileutil.file.download.handle(name, extension)
+async function downloadFile (data, name, extension, start) {
+    let handle = await fileutil.file.download.handle(name, extension, start)
     await writeFile(data, handle)
 
     return handle

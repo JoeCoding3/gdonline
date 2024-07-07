@@ -1,12 +1,12 @@
 let fileutil = {
     file: {
-        get: async function (types = [], multiple, inHandle) {
+        get: async function (types = [], multiple = false, inHandle, startIn = "documents") {
             let handleList = [inHandle]
             if (!inHandle) {
                 handleList = await showOpenFilePicker({
-                    multiple: multiple,
+                    multiple,
                     excludeAcceptAllOption: true,
-                    startIn: "documents",
+                    startIn: typeof startIn == "string" ? startIn : startIn.data.handle,
                     types: [{
                         accept: {
                             "*/*": types
@@ -21,8 +21,10 @@ let fileutil = {
                         type: "file",
                         name: handle.name,
                         handle: handle,
-                        file: await handle.getFile(),
                         access: false
+                    },
+                    file: async function () {
+                        return await this.data.handle.getFile()
                     },
                     delete: async function () {
                         await this.data.handle.remove()
@@ -37,11 +39,13 @@ let fileutil = {
                     },
                     read: async function (type = "text") {
                         if (type == "text") {
-                            let text = await this.data.file.text()
+                            let file = await this.file()
+                            let text = await file.text()
                             return text
                         } else if (type == "buffer") {
                             let reader = new FileReader()
-                            reader.readAsArrayBuffer(this.data.file)
+                            let file = await this.file()
+                            reader.readAsArrayBuffer(file)
                             return new Promise(function (resolve) {
                                 reader.onload = function () {
                                     let buffer = reader.result
@@ -58,10 +62,9 @@ let fileutil = {
                         let writable = await this.data.handle.createWritable()
                         await writable.write(data)
                         await writable.close()
-                        this.data.file = await this.data.handle.getFile()
                     },
                     store: async function (id) {
-                        await set("file_" + id, this.data.handle)
+                        await setIdb("file_" + id, this.data.handle)
                     },
                     copy: async function (dir, overwrite = false) {
                         let content = await this.read()
@@ -80,7 +83,7 @@ let fileutil = {
             }
             return out
         },
-        picker: function (accept, multiple) {
+        picker: function (accept, multiple = false) {
             let elem = document.createElement("input")
             elem.type = "file"
             elem.accept = accept
@@ -95,21 +98,19 @@ let fileutil = {
         },
         storage: {
             get: async function (id) {
-                let handle = await get("file_" + id)
+                let handle = await getIdb("file_" + id)
                 if (handle) {
                     let arr = await fileutil.file.get(null, null, handle)
                     return arr[0]
                 }
             },
             remove: async function (id) {
-                await del("file_" + id)
+                await delIdb("file_" + id)
             },
             list: async function () {
                 let out = []
                 let keys = await storageKeys()
-                for (let key of keys) {
-                    if (key.startsWith("file_")) out.push(await this.get(key.substring(5)))
-                }
+                for (let key of keys) if (key.startsWith("file_")) out.push(await this.get(key.substring(5)))
                 return out
             }
         },
@@ -122,11 +123,11 @@ let fileutil = {
 
                 elem.click()
             },
-            handle: async function (name = "", types = []) {
+            handle: async function (name = "", types = [], startIn = "documents") {
                 let handle = await showSaveFilePicker({
                     suggestedName: name,
                     excludeAcceptAllOption: true,
-                    startIn: "documents",
+                    startIn: typeof startIn == "string" ? startIn : startIn.data.handle,
                     types: [{
                         accept: {
                             "*/*": types
@@ -139,11 +140,11 @@ let fileutil = {
         }
     },
     folder: {
-        get: async function (edit = true, inHandle) {
+        get: async function (edit = true, inHandle, startIn = "documents") {
             let handle = inHandle
             if (!inHandle) handle = await showDirectoryPicker({
                 mode: edit ? "readwrite" : "read",
-                startIn: "documents"
+                startIn: typeof startIn == "string" ? startIn : startIn.data.handle
             })
             let obj = {
                 data: {
@@ -247,7 +248,7 @@ let fileutil = {
                     return path
                 },
                 store: async function (id) {
-                    await set("folder_" + id, this.data.handle)
+                    await setIdb("folder_" + id, this.data.handle)
                 }
             }
             return obj
@@ -266,11 +267,11 @@ let fileutil = {
         },
         storage: {
             get: async function (id) {
-                let handle = await get("folder_" + id)
+                let handle = await getIdb("folder_" + id)
                 if (handle) return await fileutil.folder.get(null, handle)
             },
             reset: async function (id) {
-                await del("folder_" + id)
+                await delIdb("folder_" + id)
             },
             list: async function () {
                 let out = []

@@ -150,8 +150,14 @@ async function exportLevel (name, noPrompt, overrideHandle) {
         let strObjs = JSON.stringify(levelObjs)
         let levelStr = "level=" + strObjs + "\n"
 
-        if (exportLevelHandle == undefined || overrideHandle) exportLevelHandle = await downloadFile(levelStr, name, ".level.txt")
-        else await writeFile(levelStr, exportLevelHandle)
+        if (exportLevelHandle == undefined || overrideHandle) {
+            let start = await fileutil.folder.storage.get("gdonline_levels")
+            if (start == undefined) {
+                start = await fileutil.folder.get()
+                await start.store("gdonline_levels")
+            }
+            exportLevelHandle = await downloadFile(levelStr, name, ".level.txt", start)
+        } else await writeFile(levelStr, exportLevelHandle)
 
         exportLevelSaved = true
         if (!noPrompt) alert("Level saved as " + name + ".level.txt!")

@@ -16,8 +16,10 @@ onkeydown = function (ev) {
     else if (key == "r" && !levelEnded) toggleEditor(true)
     else if (key == "o") startLevelExport(levelEnded, pressingShift)
     else if (key == "i") startLevelImport(levelEnded, pressingShift)
-    else if (key == "l") importFromReal(levelEnded)
-    else if (key == "shift") pressingShift = true
+    else if (key == "l") importFromReal(levelEnded, pressingShift)
+
+    pressingShift = false
+    if (key == "shift") pressingShift = true
 }
 onkeyup = function (ev) {
     let key = ev.key.toLowerCase()

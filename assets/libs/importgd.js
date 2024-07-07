@@ -1,6 +1,7 @@
 let levelTable = []
 async function importSave (handle) {
-    if (handle.data.file.size / 1024 / 1024 >= 100) return
+    let file = await handle.file()
+    if (file.size / 1024 / 1024 >= 100) return
     let buffer = await handle.read("buffer")
     
     let decoded = decodeSave(buffer, 11)
