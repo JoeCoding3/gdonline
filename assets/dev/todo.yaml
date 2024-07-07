@@ -1,6 +1,7 @@
 description:
     [WIP] My recreation of GD, online
 todo:
+    fix ground repeating issue when going right
     show number of coins collected on level complete screen
     add a percent counter/progress bar:
         top middle of screen

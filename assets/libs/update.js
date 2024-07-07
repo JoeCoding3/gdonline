@@ -16,7 +16,7 @@ let levelEnding = false
 let levelEnded = false
 registerConsts({
     playerGrav: 0.85,
-    playerGravShip: 0.36,
+    playerGravShip: 0.5,
     playerJumpVel: 14.5,
     playerJumpVelShip: 4.8,
     playerRSpd: 4.7,
@@ -27,8 +27,8 @@ registerConsts({
     playerShipPressCap: 2.8,
     playerShipRotUp: 325,
     playerShipRotDown: 390,
-    playerShipRMulUp: 2.5,
-    playerShipRMulDown: 2.5,
+    playerShipRMulUp: 5,
+    playerShipRMulDown: 5,
     padYellowJumpVel: 23
 })
 function tick () {
