@@ -1,8 +1,11 @@
 let exportLevelHandle
 let exportLevelName
 let exportLevelSaved = true
+let lastNoScript = false
 let level = []
 async function loadLevel (noScript) {
+    if (noScript == undefined) noScript = lastNoScript
+    else lastNoScript = noScript
     if (!noScript) await loadLevelScript()
 
     collisionBoxes = []
