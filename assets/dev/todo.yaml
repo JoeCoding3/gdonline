@@ -8,4 +8,5 @@ todo:
     add actual buttons, in addition to keyboard keys/mouse buttons
     try remaking using classes
     add music:
+        sync game to real gd speed
         make fps more stable so music can sync
