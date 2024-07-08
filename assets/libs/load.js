@@ -208,7 +208,8 @@ function addEndObj () {
 }
 function endLevel () {
     if (!levelEnded) {
-        playerCanvas.text(innerWidth / 2, innerHeight / 2, 100, objTypeHitCols.text, "Level Complete!")
+        playerCanvas.text(innerWidth / 2, (innerHeight / 2) - 50, 100, objTypeHitCols.text, "Level Complete!")
+        playerCanvas.text(innerWidth / 2, (innerHeight / 2) + 50, 100, objTypeHitCols.text, playerCoins + "/" + currentCoins + " Coins")
         document.body.style.cursor = "default"
     }
     levelEnded = true

@@ -2,21 +2,18 @@ description:
     [WIP] My recreation of GD, online
 todo:
     fix ground repeating issue when going right
-    show number of coins collected on level complete screen
     add a percent counter/progress bar:
         top middle of screen
     fix ship sticking to ceiling
     add ceiling after ship portal:
         remove after cube portal
     
-    make player faster:
-        try playerSpdX=10
-        change gravity, jump pad strength, etc.
     add error handling:
         make custom error classes in errors.js
         add console logging/warning/debugging for lots of things
     add actual buttons, in addition to keyboard keys/mouse buttons
     try remaking using classes
     add music:
-        sync game to real gd speed
+        sync game to real gd speed:
+            need to change gravity, jump pad strength, etc. to account for faster speed
         make fps more stable so music can sync
