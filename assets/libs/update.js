@@ -25,9 +25,9 @@ registerConsts({
     playerShipPressMul: 0.05,
     playerShipFallMul: 0.04,
     playerShipPressCap: 2.8,
-    playerShipRotUp: 335,
+    playerShipRotUp: 320,
     playerShipRotDown: 400,
-    playerShipRMulUp: 2.8,
+    playerShipRMulUp: 3.7,
     playerShipRMulDown: 3,
     padYellowJumpVel: 23
 })
@@ -99,9 +99,26 @@ async function updateGraphics () {
         }
     }
 
+    playerCanvas.text(50, 20, 30, objTypeHitCols.text, gameStatus)
+    let endObj = collisionBoxes[collisionBoxes.length - 2]
+    if (endObj.obj == "ending") {
+        let endPos = endObj.hitX - (playerW / 2)
+        let endDistance = endPos - playerX
+
+        calculateStartOffset()
+        let totalDistance = -levelStartOffset + endPos
+
+        let playerDistance = totalDistance - endDistance
+        let percent = playerDistance / totalDistance * 100
+        if (percent < 0) percent = 0
+        if (percent > 100) percent = 100
+
+        playerCanvas.rect((innerWidth / 2) - 40, 20, 402, 30, objTypeHitCols.outline, 0, 1.5)
+        playerCanvas.rect((innerWidth / 2) - 240 + (percent * 2), 20, percent * 4, 28, objTypeHitCols.text)
+        playerCanvas.text((innerWidth / 2) + 205, 17, 30, objTypeHitCols.text, (Math.floor(percent) + "%").padStart(4, "0")) // 85px wide
+    }
     if (tickIterations % targetFps == targetFps / 2 || tickIterations == 0) lastFpsStr = fps.toString().padStart(3, "0") + " fps"
-    playerCanvas.text(55, 20, 30, objTypeHitCols.text, lastFpsStr)
-    playerCanvas.text(50, 52, 30, objTypeHitCols.text, gameStatus)
+    if (showFps) playerCanvas.text(innerWidth - 60, 20, 30, objTypeHitCols.text, lastFpsStr)
 }
 function updatePhysics () {
     if (!playerCrashed && !pauseEnabled) {

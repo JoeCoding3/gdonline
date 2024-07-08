@@ -39,8 +39,10 @@ Config:
     File is gdonline/assets/options.js.
     Options:
         targetFps: Target game speed
-        showHitboxes: Draw hitboxes or not
         levelName: Name of the level to load on startup
+        showHitboxes: Show hitboxes or not
+        showStatus: Show game status or not (play/pause/editor)
+        showFps: Show fps or not
 Cursor:
     Invisible while playing.
     Default when paused.

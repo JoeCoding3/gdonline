@@ -2,8 +2,6 @@ description:
     [WIP] My recreation of GD, online
 todo:
     fix ground repeating issue when going right
-    add a percent counter/progress bar:
-        top middle of screen
     fix ship sticking to ceiling
     add ceiling after ship portal:
         remove after cube portal
@@ -15,5 +13,6 @@ todo:
     try remaking using classes
     add music:
         sync game to real gd speed:
-            need to change gravity, jump pad strength, etc. to account for faster speed
+            try playerSpdX=10
+            need to change gravity, jump height, jump pad strength, ground object repeat offset, etc. to account for faster speed
         make fps more stable so music can sync

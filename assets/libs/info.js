@@ -171,7 +171,8 @@ registerConsts({
         pad: "lightgreen",
         ending: "brown",
         editor: "gray",
-        text: "lightgray"
+        text: "lightgray",
+        outline: "white"
     }
 })
 let objImgs = {}

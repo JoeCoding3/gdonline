@@ -1,5 +1,7 @@
 registerConsts({
     targetFps: 100,
+    levelName: "empty",
     showHitboxes: true,
-    levelName: "empty"
+    showStatus: true,
+    showFps: true
 })

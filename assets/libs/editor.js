@@ -1,6 +1,6 @@
 let editorEnabled = false
 let pauseEnabled = false
-let gameStatus = ""
+let gameStatus = "Play"
 let currentBlock = "block"
 let editorIconIndex = 0
 let editorIconMax = 0
@@ -40,7 +40,7 @@ async function toggleEditor (restart) {
         removeEndObj()
     } else {
         resetConst("playerSpdX")
-        gameStatus = ""
+        gameStatus = "Play"
         document.body.style.cursor = "none"
         
         addEndObj()
@@ -121,7 +121,7 @@ function togglePause () {
         gameStatus = "Pause"
         document.body.style.cursor = "default"
     } else {
-        gameStatus = ""
+        gameStatus = "Play"
         document.body.style.cursor = "none"
     }
 }
