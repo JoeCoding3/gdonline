@@ -101,15 +101,12 @@ async function updateGraphics () {
 
     playerCanvas.text(50, 20, 30, objTypeHitCols.text, gameStatus)
 
-    let playerPos = playerX - (playerW / 2)
-    let endPos = addEndObj(true) - (editorGridSize / 2) - playerW
+    calculateStartOffset()
+    playerPos = -levelStartOffset + playerX - (playerW / 2)
+    endPos = addEndObj(true) - (editorGridSize / 2) - playerW
     let endDistance = endPos - playerPos
 
-    calculateStartOffset()
-    let totalDistance = -levelStartOffset + endPos
-
-    let playerDistance = totalDistance - endDistance
-    let percent = playerDistance / totalDistance * 100
+    let percent = 100 - (endDistance / endPos * 100)
     if (percent < 0) percent = 0
     if (percent > 100) percent = 100
 
