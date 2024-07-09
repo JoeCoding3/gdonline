@@ -193,18 +193,21 @@ function removeEndObj () {
         if (box.obj == "ending") collisionBoxes.splice(index, 1)
     }
 }
-function addEndObj () {
-    removeEndObj()
+function addEndObj (noAdd) {
+    if (!noAdd) removeEndObj()
 
     let maxBox = {imgX: 0, imgW: 0}
     for (let box of collisionBoxes) if (box.imgX + (box.imgW / 2) > maxBox.imgX + (maxBox.imgW / 2) && box.obj != "bg" && box.obj != "ground" && box.obj != "fixer" && box.obj != "ending") maxBox = box
     
     let endX = maxBox.imgX + (maxBox.imgW / 2) + defaultObjInfo.ending.special.spacing
     if (endX < innerWidth - (editorGridSize / 2)) endX = innerWidth - (editorGridSize / 2)
-    addCollisionBox({
-        obj: "ending",
-        imgX: endX
-    })
+    if (noAdd) return endX
+    else {
+        addCollisionBox({
+            obj: "ending",
+            imgX: endX
+        })
+    }
 }
 function endLevel () {
     if (!levelEnded) {
