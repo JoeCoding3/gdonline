@@ -2,6 +2,8 @@ description:
     [WIP] My recreation of GD, online
 todo:
     add length rating to levels:
+        tiny/short/meduim/long/xl:
+            abbreviate to t/s/m/l/x
         put on let of progress bar
         center progress bar
         move percent counter to right of progress bar
