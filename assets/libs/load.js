@@ -159,7 +159,7 @@ async function exportLevel (name, noPrompt, overrideHandle) {
                 start = await fileutil.folder.get()
                 await start.store("gdonline_levels")
             }
-            exportLevelHandle = await downloadFile(levelStr, name, ".level.txt", start)
+            exportLevelHandle = await downloadFile(levelStr, name + ".level", "txt", start)
         } else await writeFile(levelStr, exportLevelHandle)
 
         exportLevelSaved = true
@@ -171,7 +171,7 @@ async function startLevelImport (bypassEditor, filePicker) {
 
     if (editorEnabled || bypassEditor) {
         if (filePicker) {
-            let [handle] = await fileutil.file.get(".level.txt")
+            let [handle] = await fileutil.file.get("level.txt")
             let content = await handle.read()
             level = Function(content + "; return level")()
 

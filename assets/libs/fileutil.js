@@ -3,6 +3,11 @@ let fileutil = {
         get: async function (types = [], multiple = false, inHandle, startIn = "documents") {
             let handleList = [inHandle]
             if (!inHandle) {
+                if (typeof types == "string") types = [types]
+                for (let index in types) {
+                    let type = types[index]
+                    if (!type.startsWith(".")) types[index] = "." + type
+                }
                 handleList = await showOpenFilePicker({
                     multiple,
                     excludeAcceptAllOption: true,
@@ -10,7 +15,8 @@ let fileutil = {
                     types: [{
                         accept: {
                             "*/*": types
-                        }
+                        },
+                        description: ":"
                     }]
                 })
             }
@@ -124,14 +130,20 @@ let fileutil = {
                 elem.click()
             },
             handle: async function (name = "", types = [], startIn = "documents") {
+                if (typeof types == "string") types = [types]
+                for (let index in types) {
+                    let type = types[index]
+                    if (!type.startsWith(".")) types[index] = "." + type
+                }
                 let handle = await showSaveFilePicker({
-                    suggestedName: name,
+                    suggestedName: name + types[0],
                     excludeAcceptAllOption: true,
                     startIn: typeof startIn == "string" ? startIn : startIn.data.handle,
                     types: [{
                         accept: {
                             "*/*": types
-                        }
+                        },
+                        description: ":"
                     }]
                 })
                 let arr = await fileutil.file.get(null, null, handle)

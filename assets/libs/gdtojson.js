@@ -166,7 +166,7 @@ async function importFromReal (bypassEditor, forceSelect) {
         if (levelTable == "" || forceSelect) {
 			let handle = await fileutil.file.storage.get("gdonline_save")
 			if (handle == undefined || forceSelect) {
-				[handle] = await fileutil.file.get(".dat")
+				[handle] = await fileutil.file.get("dat")
 				await handle.store("gdonline_save")
 			}
             await importSave(handle)
