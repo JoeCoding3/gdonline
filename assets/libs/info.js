@@ -26,7 +26,7 @@ registerConsts({
             hitH: 128,
             imgX: "innerWidth / 2",
             imgY: "innerHeight - 64",
-            imgW: "innerWidth + 256",
+            imgW: "innerWidth + 1024",
             resizeW: 128,
             repeat: true,
             type: "ground",
@@ -34,8 +34,8 @@ registerConsts({
             zIndex: 1001,
             noEditor: true,
             auto: true,
-            repeatL: -256,
-            repeatR: "innerWidth + 256"
+            repeatL: -768,
+            repeatR: "innerWidth + 768"
         },
         fixer: {
             hitW: 60,

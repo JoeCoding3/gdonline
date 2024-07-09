@@ -1,7 +1,6 @@
 description:
     [WIP] My recreation of GD, online
 todo:
-    fix ground repeating issue when going right
     fix ship sticking to ceiling
     add ceiling after ship portal:
         remove after cube portal
