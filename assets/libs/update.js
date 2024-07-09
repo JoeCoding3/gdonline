@@ -101,18 +101,20 @@ async function updateGraphics () {
 
     playerCanvas.text(50, 20, 30, objTypeHitCols.text, gameStatus)
 
-    calculateStartOffset()
-    let playerPos = -levelStartOffset + playerX - (playerW / 2)
-    let endPos = addEndObj(true) - (editorGridSize / 2) - playerW
-    let endDistance = endPos - playerPos
+    if (!editorEnabled) {
+        calculateStartOffset()
+        let playerPos = -levelStartOffset + playerX - (playerW / 2)
+        let endPos = addEndObj(true) - (editorGridSize / 2) - playerW
+        let endDistance = endPos - playerPos
 
-    let percent = 100 - (endDistance / endPos * 100)
-    if (percent < 0) percent = 0
-    if (percent > 100) percent = 100
+        let percent = 100 - (endDistance / endPos * 100)
+        if (percent < 0) percent = 0
+        if (percent > 100) percent = 100
 
-    playerCanvas.rect((innerWidth / 2) - 40, 20, 402, 30, objTypeHitCols.outline, 0, 1.5)
-    playerCanvas.rect((innerWidth / 2) - 240 + (percent * 2), 20, percent * 4, 28, objTypeHitCols.text)
-    playerCanvas.text((innerWidth / 2) + 205, 17, 30, objTypeHitCols.text, (Math.floor(percent) + "%").padStart(4, "0")) // 85px wide
+        playerCanvas.rect((innerWidth / 2) - 40, 20, 402, 30, objTypeHitCols.outline, 0, 1.5)
+        playerCanvas.rect((innerWidth / 2) - 240 + (percent * 2), 20, percent * 4, 28, objTypeHitCols.text)
+        playerCanvas.text((innerWidth / 2) + 205, 17, 30, objTypeHitCols.text, (Math.floor(percent) + "%").padStart(4, "0"))
+    }
     
     if (tickIterations % targetFps == targetFps / 2 || tickIterations == 0) lastFpsStr = fps.toString().padStart(3, "0") + " fps"
     if (showFps) playerCanvas.text(innerWidth - 60, 20, 30, objTypeHitCols.text, lastFpsStr)
@@ -160,6 +162,7 @@ function updatePhysics () {
         }
 
         playerY += playerSpdY
+        if (shipOnCeiling && pressingUp) playerSpdY = 0
         checkCollision()
 
         if (playerOnGround || (shipOnCeiling && pressingUp)) {
