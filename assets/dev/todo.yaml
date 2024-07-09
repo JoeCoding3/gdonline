@@ -1,6 +1,10 @@
 description:
     [WIP] My recreation of GD, online
 todo:
+    add length rating to levels:
+        put on let of progress bar
+        center progress bar
+        move percent counter to right of progress bar
     fix ship sticking to ceiling
     add ceiling after ship portal:
         remove after cube portal
