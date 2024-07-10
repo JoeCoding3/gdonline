@@ -13,7 +13,7 @@ onkeydown = function (ev) {
     else if (key == "d") pressingRight = true
     else if (key == "p" && !levelEnded) togglePause()
     else if (key == "e" && !levelEnded) toggleEditor()
-    else if (key == "r" && !levelEnded) toggleEditor(true)
+    else if (key == "r") resetPlayer(null, true)
     else if (key == "o") startLevelExport(levelEnded, pressingShift)
     else if (key == "i") startLevelImport(levelEnded, pressingShift)
     else if (key == "l") importFromReal(levelEnded, pressingShift)

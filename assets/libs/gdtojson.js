@@ -173,6 +173,8 @@ async function importFromReal (bypassEditor, forceSelect) {
         }
 		let index = prompt(getNames().join("\n"), "0")
 		if (index != null) {
+			currentCoins = 0
+
 			let levelData = getLevel(index)
 			let converted = gdToJson(levelData)
 
@@ -206,6 +208,8 @@ async function importFromReal (bypassEditor, forceSelect) {
 					if (obj.rotation == 90 || obj.rotation == 180 || obj.rotation == 270) addObj.rot = obj.rotation
 					else if (obj.flipX || obj.flipY) addObj.rot = 180
 					newObjs.push(addObj)
+
+					if (objName == "coin") currentCoins++
 				}
 			}
 

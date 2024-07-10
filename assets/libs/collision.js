@@ -153,13 +153,18 @@ function respawnPlayer () {
         }, 700)
     }
 }
-function resetPlayer (noScript) {
+async function resetPlayer (noScript, noLoad) {
+    if (!exportLevelSaved) await exportLevel(exportLevelName, true)
+    if (!noLoad) loadLevel(noScript)
+        
     updatePlayerMode("cube")
-    loadLevel(noScript)
 
     playerX = 0
     playerY = innerHeight - (playerW / 2) - 128
     playerR = 0
+
+    for (let obj of collisionBoxes) if (obj.obj == "coin") obj.noRender = false
+    playerCoins = 0
     
     levelEnded = false
     levelEnding = false

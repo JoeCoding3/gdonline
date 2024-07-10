@@ -9,11 +9,12 @@ let editorGridY = 0
 let editorIconNames = []
 let levelStartOffset = 0
 let currentCoins = 0
+let levelLength = "T"
 registerConsts({
     editorGridSize: 60,
     maxCoins: 3
 })
-async function toggleEditor (restart) {
+async function toggleEditor () {
     if (editorEnabled && !exportLevelSaved) await exportLevel(exportLevelName, true)
     levelEnding = false
 
@@ -43,19 +44,9 @@ async function toggleEditor (restart) {
         gameStatus = "Play"
         document.body.style.cursor = "none"
         
-        addEndObj()
-    }
-
-    if (restart) {
-        playerX = -playerW / 2
-
         calculateStartOffset()
-        for (let box of collisionBoxes) {
-            if (!box.repeat) {
-                box.imgX -= levelStartOffset
-                box.hitX -= levelStartOffset
-            }
-        }
+        let distance = addEndObj() - (editorGridSize / 2) - playerW
+        calculateLevelLength(distance)
     }
 }
 function click (btn, x, y, rot90) {
@@ -112,6 +103,15 @@ function calculateEditorOffset () {
 }
 function calculateStartOffset () {
     levelStartOffset = collisionBoxes[1].hitX + editorGridSize
+}
+function calculateLevelLength (distance) {
+    let pixelsPerSecond = targetFps * playerSpdX
+    let mulDist = distance / pixelsPerSecond
+    if (mulDist <= 10) levelLength = "T"
+    else if (mulDist <= 30) levelLength = "S"
+    else if (mulDist <= 60) levelLength = "M"
+    else if (mulDist <= 120) levelLength = "L"
+    else levelLength = "X"
 }
 
 function togglePause () {

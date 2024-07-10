@@ -104,16 +104,17 @@ async function updateGraphics () {
     if (!editorEnabled) {
         calculateStartOffset()
         let playerPos = -levelStartOffset + playerX - (playerW / 2)
+        
         let endPos = addEndObj(true) - (editorGridSize / 2) - playerW
-        let endDistance = endPos - playerPos
 
-        let percent = 100 - (endDistance / endPos * 100)
+        let percent = playerPos / endPos * 100
         if (percent < 0) percent = 0
         if (percent > 100) percent = 100
 
-        playerCanvas.rect((innerWidth / 2) - 40, 20, 402, 30, objTypeHitCols.outline, 0, 1.5)
-        playerCanvas.rect((innerWidth / 2) - 240 + (percent * 2), 20, percent * 4, 28, objTypeHitCols.text)
-        playerCanvas.text((innerWidth / 2) + 205, 17, 30, objTypeHitCols.text, (Math.floor(percent) + "%").padStart(4, "0"))
+        playerCanvas.text((innerWidth / 2) - 220, 17, 30, objTypeHitCols.text, levelLength)
+        playerCanvas.rect(innerWidth / 2, 20, 402, 30, objTypeHitCols.outline, 0, 1.5)
+        playerCanvas.rect((innerWidth / 2) - 200 + (percent * 2), 20, percent * 4, 28, objTypeHitCols.text)
+        playerCanvas.text((innerWidth / 2) + 245, 17, 30, objTypeHitCols.text, (Math.floor(percent) + "%").padStart(4, "0"))
     }
     
     if (tickIterations % targetFps == targetFps / 2 || tickIterations == 0) lastFpsStr = fps.toString().padStart(3, "0") + " fps"
@@ -140,10 +141,11 @@ function updatePhysics () {
             if (playerShipFallTime >= playerShipPressCap) playerShipFallTime = playerShipPressCap
         }
 
+        // player teleports to middle of screen in editor when pressing left past middle of screen while end on screen
         calculateStartOffset()
         if (editorEnabled && levelStartOffset >= 0 && pressingLeft && playerX > playerW / 2) playerX -= constDefaults.playerSpdX
         else if (levelEnding && playerX > innerWidth + (playerW / 2)) endLevel()
-        else if (playerX < innerWidth / 2 || (collisionBoxes[endPos].obj == "ending" && collisionBoxes[endPos].imgX - (editorGridSize / 2) <= innerWidth - editorGridSize)) playerX += playerSpdX
+        else if (playerX < innerWidth / 2 || (addEndObj(true) + levelStartOffset - (editorGridSize / 2) <= innerWidth - editorGridSize && (!pressingLeft || !editorEnabled))) playerX += playerSpdX
         else if (playerX > innerWidth / 2) playerX = innerWidth / 2
         else {
             for (let index in collisionBoxes) {

@@ -1,19 +1,8 @@
 description:
     [WIP] My recreation of GD, online
 todo:
-    add length rating to levels:
-        lengths (seconds):
-            tiny: 1-10
-            short: 11-30
-            medium: 31-60
-            long: 61-120
-            xl: 121+
-        tiny/short/meduim/long/xl:
-            abbreviate to t/s/m/l/x
-        put on let of progress bar
-        center progress bar
-        move percent counter to right of progress bar
-    
+    fix r key:
+        player goes to left of current screen, not start of level
     add ceiling after ship portal:
         remove after cube portal
     

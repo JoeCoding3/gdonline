@@ -158,6 +158,7 @@ registerConsts({
         repeatR: 0,
         noEditor: false,
         noAlign: false,
+        noRender: false,
         auto: false,
         special: {}
     },
