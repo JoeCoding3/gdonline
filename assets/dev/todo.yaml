@@ -3,6 +3,9 @@ description:
 todo:
     add ceiling after ship portal:
         remove after cube portal
+        look at level "back on track" for ceiling height
+    add vertical camera movement:
+        figure out how real gd handles this
     
     add error handling:
         make custom error classes in errors.js
