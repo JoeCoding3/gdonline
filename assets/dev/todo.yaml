@@ -1,8 +1,6 @@
 description:
     [WIP] My recreation of GD, online
 todo:
-    fix r key:
-        player goes to left of current screen, not start of level
     add ceiling after ship portal:
         remove after cube portal
     
@@ -12,7 +10,12 @@ todo:
     add actual buttons, in addition to keyboard keys/mouse buttons
     try remaking using classes
     add music:
+        code already in importgd.js
+        use levelSongID for song id, levelOfficialSong and levelCustomSong to check if song is official/custom
         sync game to real gd speed:
             try playerSpdX=10
             need to change gravity, jump height, jump pad strength, ground object repeat offset, etc. to account for faster speed
         make fps more stable so music can sync
+    show description of level:
+        code already in importgd.js
+        use levelDescription variable

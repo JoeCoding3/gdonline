@@ -57,7 +57,7 @@ function click (btn, x, y, rot90) {
     let gridY = snapToGrid(y, editorGridSize, editorGridY)
     if (btn == 0) {
         if (currentBlock != "coin" || currentCoins < maxCoins) {
-            currentCoins++
+            if (currentBlock == "coin") currentCoins++
 
             let objInfo = addCollisionBox({obj: currentBlock}, true)
             let y = gridY
@@ -78,7 +78,7 @@ function click (btn, x, y, rot90) {
         }
     } else if (btn == 2) {
         if (currentBlock != "coin" || currentCoins < maxCoins) {
-            currentCoins++
+            if (currentBlock == "coin") currentCoins++
 
             let objInfo = addCollisionBox({obj: currentBlock}, true)
             let y = gridY

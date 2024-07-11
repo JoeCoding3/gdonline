@@ -141,11 +141,11 @@ function updatePhysics () {
             if (playerShipFallTime >= playerShipPressCap) playerShipFallTime = playerShipPressCap
         }
 
-        // player teleports to middle of screen in editor when pressing left past middle of screen while end on screen
         calculateStartOffset()
         if (editorEnabled && levelStartOffset >= 0 && pressingLeft && playerX > playerW / 2) playerX -= constDefaults.playerSpdX
+        else if (playerX < innerWidth / 2 && editorEnabled && levelStartOffset < 0) playerX = innerWidth / 2
         else if (levelEnding && playerX > innerWidth + (playerW / 2)) endLevel()
-        else if (playerX < innerWidth / 2 || (addEndObj(true) + levelStartOffset - (editorGridSize / 2) <= innerWidth - editorGridSize && (!pressingLeft || !editorEnabled))) playerX += playerSpdX
+        else if (playerX < innerWidth / 2 || (collisionBoxes[endPos].obj == "ending" && collisionBoxes[endPos].imgX - (editorGridSize / 2) <= innerWidth - editorGridSize)) playerX += playerSpdX
         else if (playerX > innerWidth / 2) playerX = innerWidth / 2
         else {
             for (let index in collisionBoxes) {
