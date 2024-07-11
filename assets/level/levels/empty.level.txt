@@ -1,1 +1,1 @@
-level=[]
+setLevel('An empty level.',[])

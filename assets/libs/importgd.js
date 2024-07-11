@@ -125,5 +125,5 @@ function getSongID (level) {
     levelSongID = (level.officialSongID + 1) || level.customSongID || 1
 }
 function getDescription (level) {
-    levelDescription = level.description
+    levelDescription = level.description || ""
 }

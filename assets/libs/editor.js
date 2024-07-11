@@ -15,7 +15,7 @@ registerConsts({
     maxCoins: 3
 })
 async function toggleEditor () {
-    if (editorEnabled && !exportLevelSaved) await exportLevel(exportLevelName, true)
+    if (editorEnabled && !exportLevelSaved) await exportLevel(exportLevelName, exportLevelDesc, true)
     levelEnding = false
 
     editorEnabled = !editorEnabled

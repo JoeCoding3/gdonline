@@ -1,8 +1,13 @@
 let exportLevelHandle
 let exportLevelName
+let exportLevelDesc
 let exportLevelSaved = true
 let lastNoScript = false
 let level = []
+function setLevel (desc, code) {
+    levelDescription = desc
+    level = code
+}
 async function loadLevel (noScript) {
     if (noScript == undefined) noScript = lastNoScript
     else lastNoScript = noScript
@@ -14,7 +19,9 @@ async function loadLevel (noScript) {
     for (let box of defLevel) addCollisionBox(box)
     addEndObj()
 
-    renderLevel()
+    await renderLevel()
+
+    showLevelDescription()
 }
 function addCollisionBox (levelObj, noAdd) {
     let boxObj = {}
@@ -136,13 +143,19 @@ function startLevelExport (bypassEditor, saveAs) {
     if (editorEnabled || bypassEditor) {
         let name = saveAs ? undefined : exportLevelName
         if (name == undefined) name = prompt("Level name to export", "level")
-        if (name != null) exportLevel(name, false, saveAs)
+        if (name != null) {
+            let desc = saveAs ? undefined : exportLevelDesc
+            if (desc == undefined) desc = prompt("Level description to export\n(optional)", "")
+            exportLevel(name, desc, false, saveAs)
+        }
     }
 }
-async function exportLevel (name, noPrompt, overrideHandle) {
+async function exportLevel (name, desc, noPrompt, overrideHandle) {
     if (name == undefined) startLevelExport(true)
     else {
         exportLevelName = name
+        if (desc == undefined) desc = exportLevelDesc
+        else exportLevelDesc = desc
         
         let levelObjs = []
         for (let box of collisionBoxes) {
@@ -151,7 +164,7 @@ async function exportLevel (name, noPrompt, overrideHandle) {
         }
 
         let strObjs = JSON.stringify(levelObjs)
-        let levelStr = "level=" + strObjs + "\n"
+        let levelStr = "setLevel('" + (desc || "") + "'," + strObjs + ")"
 
         if (exportLevelHandle == undefined || overrideHandle) {
             let start = await fileutil.folder.storage.get("gdonline_levels")
@@ -163,7 +176,7 @@ async function exportLevel (name, noPrompt, overrideHandle) {
         } else await writeFile(levelStr, exportLevelHandle)
 
         exportLevelSaved = true
-        if (!noPrompt) alert("Level saved as " + name + ".level.txt!")
+        if (!noPrompt) alert("Level saved as: '" + name + ".level.txt'!\nDescription: " + (desc == undefined ? "[none]" : "'" + desc + "'"))
     }
 }
 async function startLevelImport (bypassEditor, filePicker) {
