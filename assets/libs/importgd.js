@@ -1,8 +1,8 @@
 let levelTable = []
-let levelSongID = -1
-let levelOfficialSong = false
-let levelCustomSong = false
-let levelDescription = ""
+let levelSongID
+let levelOfficialSong
+let levelCustomSong
+let levelDescription
 async function importSave (handle) {
     let file = await handle.file()
     if (file.size / 1024 / 1024 >= 100) return
@@ -125,5 +125,5 @@ function getSongID (level) {
     levelSongID = (level.officialSongID + 1) || level.customSongID || 1
 }
 function getDescription (level) {
-    levelDescription = level.description || "[no description]"
+    levelDescription = level.description
 }

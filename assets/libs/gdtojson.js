@@ -216,6 +216,12 @@ async function importFromReal (bypassEditor, forceSelect) {
 			level = newObjs
 			resetPlayer(true)
 			if (editorEnabled) toggleEditor()
+			
+			showLevelDescription()
 		}
 	}
+}
+function showLevelDescription () {
+	if (levelDescription == undefined) alert("No level description.")
+	else alert("Level description:\n" + levelDescription)
 }

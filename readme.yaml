@@ -4,8 +4,9 @@ Developers:
 Controls:
     Space: Jump
     E: Toggle editor
-    R: Toggle editor and teleport to start of level
     P: Toggle pause
+    R: Teleport to start of level
+    K: Show level description. (Also shows when loading a level)
 Editor Controls:
     WASD: Fly
     Scroll: Select block
