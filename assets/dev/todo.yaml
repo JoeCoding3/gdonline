@@ -18,6 +18,7 @@ todo:
     add music:
         code already in importgd.js
         use levelSongID for song id, levelOfficialSong and levelCustomSong to check if song is official/custom
+        check gdbrowser video/api to get url and parameters to download song from robtop's servers
         sync game to real gd speed:
             try playerSpdX=10
             need to change gravity, jump height, jump pad strength, ground object repeat offset, etc. to account for faster speed
