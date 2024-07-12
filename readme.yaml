@@ -23,6 +23,7 @@ Level Exporting:
     Level will auto-export when exiting editor mode, this is the small freeze that you may notice.
     When exporting:
         Input the name of the level and click OK.
+        Input the level description and click OK, or just click Cancel.
         To cancel exporting, click Cancel.
         Save the level file in gdonline/assets/level/levels.
         The level will download with a .js extension, don't change it.
