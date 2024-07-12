@@ -176,7 +176,7 @@ async function exportLevel (name, desc, noPrompt, overrideHandle) {
         } else await writeFile(levelStr, exportLevelHandle)
 
         exportLevelSaved = true
-        if (!noPrompt) alert("Level saved as: '" + name + ".level.txt'!\nDescription: " + (desc == undefined ? "[none]" : "'" + desc + "'"))
+        if (!noPrompt) alert("Level saved!\nDescription: " + (desc == undefined ? "[none]" : "'" + desc + "'"))
     }
 }
 async function startLevelImport (bypassEditor, filePicker) {
