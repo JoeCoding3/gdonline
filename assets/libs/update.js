@@ -29,7 +29,8 @@ registerConsts({
     playerShipRotDown: 400,
     playerShipRMulUp: 3.7,
     playerShipRMulDown: 3,
-    padYellowJumpVel: 23
+    padYellowJumpVel: 23,
+    playerHighSpdXMul: 5
 })
 function tick () {
     let currentFrameTime = performance.now()
@@ -190,6 +191,7 @@ function updatePhysics () {
             if (pressingLeft && levelStartOffset < 0) playerSpdX = -constDefaults.playerSpdX
             else if (pressingRight) playerSpdX = constDefaults.playerSpdX
             else playerSpdX = 0
+            if (pressingShift) playerSpdX *= playerHighSpdXMul
         }
     }
 }

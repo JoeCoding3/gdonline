@@ -197,8 +197,8 @@ registerConsts({
         }
     },
     gdToJsonIds: {
-        block: [1, 2, 3, 6, 7, 146],
-        halfBlock: [40, 147, 215, 662, 1903],
+        block: [1, 2, 3, 4, 6, 7, 146],
+        halfBlock: [40, 62, 147, 215, 662, 1903],
         spike: [8, 144, 177, 216],
         halfSpike: [9, 39, 178, 205, 217],
         smallSpike: [103, 145,179, 218],
@@ -206,11 +206,13 @@ registerConsts({
         coin: [1329],
         cubePortal: [12],
         shipPortal: [13],
-        yellowPad: [35]
+        yellowPad: [35],
+        yellowOrb: [36]
     },
     gdToJsonMoves: {
-        "-16": [40],
+        1.5: ["halfSpike"],
         8: [9],
-        1.5: ["halfSpike"]
+        "-16": [40],
+        "-16.5": [62]
     }
 })

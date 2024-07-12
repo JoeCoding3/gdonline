@@ -35,9 +35,9 @@ let fileutil = {
                     delete: async function () {
                         await this.data.handle.remove()
                     },
-                    perms: async function () {
+                    perms: async function (write = true) {
                         let result = await this.data.handle.requestPermission({
-                            mode: "readwrite"
+                            mode: write ? "readwrite" : "read"
                         })
                         let allowed = result == "granted"
                         this.data.access = allowed

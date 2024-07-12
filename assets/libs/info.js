@@ -143,6 +143,17 @@ registerConsts({
             special: {
                 mode: "yellow"
             }
+        },
+        yellowOrb: {
+            imgW: 60,
+            imgH: 60,
+            hitW: 72,
+            hitH: 72,
+            type: "orb",
+            texture: "orb/yellowOrb",
+            special: {
+                mode: "yellow"
+            }
         }
     },
     defaultObjGlobalInfo: {
@@ -170,6 +181,7 @@ registerConsts({
         portal: "orange",
         coin: "yellow",
         pad: "lightgreen",
+        orb: "lightgreen",
         ending: "brown",
         editor: "gray",
         text: "lightgray",

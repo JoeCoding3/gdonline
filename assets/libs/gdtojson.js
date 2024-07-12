@@ -169,6 +169,7 @@ async function importFromReal (bypassEditor, forceSelect) {
 				[handle] = await fileutil.file.get("dat")
 				await handle.store("gdonline_save")
 			}
+			await handle.perms(false)
             await importSave(handle)
         }
 		let index = prompt(getNames().join("\n"), "0")
@@ -202,7 +203,8 @@ async function importFromReal (bypassEditor, forceSelect) {
 					let addObj = {
 						obj: objName,
 						imgX,
-						imgY: "innerHeight-128- " + imgY
+						imgY: "innerHeight-128- " + imgY,
+						id: id
 					}
 					if (obj.rotation < 0) obj.rotation += 360
 					if (obj.rotation == 90 || obj.rotation == 180 || obj.rotation == 270) addObj.rot = obj.rotation
@@ -216,8 +218,6 @@ async function importFromReal (bypassEditor, forceSelect) {
 			level = newObjs
 			resetPlayer(true)
 			if (editorEnabled) toggleEditor()
-			
-			showLevelDescription()
 		}
 	}
 }

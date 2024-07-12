@@ -1,6 +1,9 @@
 description:
     [WIP] My recreation of GD, online
 todo:
+    program yellow orb:
+        already created loader/texture for yellow orb
+    
     add ceiling after ship portal:
         remove after cube portal
         look at level "back on track" for ceiling height
