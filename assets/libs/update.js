@@ -29,8 +29,9 @@ registerConsts({
     playerShipRotDown: 400,
     playerShipRMulUp: 3.7,
     playerShipRMulDown: 3,
+    playerHighSpdXMul: 5,
     padYellowJumpVel: 23,
-    playerHighSpdXMul: 5
+    orbYellowJumpVel: 15
 })
 function tick () {
     let currentFrameTime = performance.now()
@@ -182,6 +183,7 @@ function updatePhysics () {
             } else playerR += playerRSpd
 
             if (editorEnabled && !pressingDown) playerSpdY = 0
+            else if (editorEnabled) playerSpdY += Math.abs(isShip ? playerGravShip : playerGrav)
             else playerSpdY += isShip ? playerGravShip : playerGrav
             if (playerSpdY >= playerYSpdCap) playerSpdY = playerYSpdCap
             if (playerSpdY <= -playerYSpdCap) playerSpdY = -playerYSpdCap
@@ -198,10 +200,18 @@ function updatePhysics () {
 function padBoostPlayer (mode) {
     playerOnGround = false
     if (mode == "yellow") playerSpdY = -padYellowJumpVel
+    else if (mode == "blue") playerSpdY = 0, playerGrav = -Math.abs(playerGrav)
+}
+function orbBoostPlayer (mode) {
+    playerOnGround = false
+    if (mode == "yellow") playerSpdY = -orbYellowJumpVel
 }
 
 function updatePlayerMode (mode) {
-    if (playerMode != mode && mode != null) {
+    if (mode.startsWith("grav_")) {
+        let gravMode = mode.substring(5)
+        if (gravMode == "blue") playerSpdY = 0, playerGrav = Math.abs(playerGrav)
+    } else if (playerMode != mode && mode != null) {
         playerMode = mode
         playerSrc = "./assets/sprites/player/" + mode + ".png"
         playerR = 360

@@ -1,3 +1,4 @@
+let unusedLevelIds = []
 function gdToJsonConvertKS38 (kS38) {
 	let splitKS38 = kS38.split("|").filter(x => x != "")
 	let array = []
@@ -208,10 +209,11 @@ async function importFromReal (bypassEditor, forceSelect) {
 					if (obj.rotation < 0) obj.rotation += 360
 					if (obj.rotation == 90 || obj.rotation == 180 || obj.rotation == 270) addObj.rot = obj.rotation
 					else if (obj.flipX || obj.flipY) addObj.rot = 180
+					if (addObj.rot == 180) addObj.imgY += " + " + moveY + "*2"
 					newObjs.push(addObj)
 
 					if (objName == "coin") currentCoins++
-				}
+				} else if (unusedLevelIds.indexOf(id) == -1) unusedLevelIds.push(id)
 			}
 
 			level = newObjs

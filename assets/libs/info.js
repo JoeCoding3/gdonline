@@ -73,6 +73,14 @@ registerConsts({
             type: "ground",
             texture: "block/halfBlock"
         },
+        largeHalfBlock: {
+            imgH: 60,
+            hitY: -30,
+            hitW: 60,
+            hitH: 32,
+            type: "ground",
+            texture: "block/largeHalfBlock"
+        },
         spike: {
             hitW: 10,
             hitH: 20,
@@ -107,13 +115,6 @@ registerConsts({
             type: "spike",
             texture: "spike/tinySpike"
         },
-        coin: {
-            hitW: 80,
-            hitH: 80,
-            type: "coin",
-            texture: "coin/coin",
-            noAlign: true
-        },
         cubePortal: {
             hitW: 100,
             hitH: 180,
@@ -134,6 +135,16 @@ registerConsts({
                 mode: "ship"
             }
         },
+        bluePortal: {
+            hitW: 100,
+            hitH: 180,
+            type: "portal",
+            texture: "portal/bluePortal",
+            noAlign: true,
+            special: {
+                mode: "grav_blue"
+            }
+        },
         yellowPad: {
             imgW: 50,
             hitW: 60,
@@ -142,6 +153,16 @@ registerConsts({
             texture: "pad/yellowPad",
             special: {
                 mode: "yellow"
+            }
+        },
+        bluePad: {
+            imgW: 50,
+            hitW: 60,
+            hitH: 12,
+            type: "pad",
+            texture: "pad/bluePad",
+            special: {
+                mode: "blue"
             }
         },
         yellowOrb: {
@@ -154,6 +175,13 @@ registerConsts({
             special: {
                 mode: "yellow"
             }
+        },
+        coin: {
+            hitW: 80,
+            hitH: 80,
+            type: "coin",
+            texture: "coin/coin",
+            noAlign: true
         }
     },
     defaultObjGlobalInfo: {

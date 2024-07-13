@@ -47,6 +47,7 @@ function checkHeadCollision () {
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
                 if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
+                if (bT == "orb" && colliding && pressingUp) orbBoostPlayer(bS.mode)
 
                 if (colliding && (bT == "ground" || bT == "spike")) break
             }
@@ -92,6 +93,7 @@ function checkGroundCollision () {
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
                 if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
+                if (bT == "orb" && colliding && pressingUp) orbBoostPlayer(bS.mode)
 
                 if (colliding && (bT == "ground" || bT == "spike")) break
             }
@@ -133,6 +135,7 @@ function checkWallCollision () {
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
                 if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
+                if (bT == "orb" && colliding && pressingUp) orbBoostPlayer(bS.mode)
 
                 if (colliding && (bT == "ground" || bT == "spike")) break
             }

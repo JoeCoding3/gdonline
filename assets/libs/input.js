@@ -3,6 +3,9 @@ let pressingDown = false
 let pressingLeft = false
 let pressingRight = false
 let pressingShift = false
+registerConsts({
+    editorHighScrollSpd: 2
+})
 onkeydown = function (ev) {
     if (ev.repeat) return
     let key = ev.key.toLowerCase()
@@ -45,8 +48,8 @@ oncontextmenu = ev => ev.preventDefault()
 onwheel = function (ev) {
     if (editorEnabled) {
         let delta = ev.deltaY
-        if (delta < 0) editorIconIndex--
-        else editorIconIndex++
+        if (delta < 0) editorIconIndex -= pressingShift ? editorHighScrollSpd : 1
+        else editorIconIndex += pressingShift ? editorHighScrollSpd : 1
 
         if (editorIconIndex < 0) editorIconIndex = 0
         if (editorIconIndex > editorIconMax) editorIconIndex = editorIconMax
