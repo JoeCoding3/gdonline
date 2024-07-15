@@ -145,6 +145,16 @@ registerConsts({
                 mode: "grav_blue"
             }
         },
+        yellowPortal: {
+            hitW: 100,
+            hitH: 180,
+            type: "portal",
+            texture: "portal/yellowPortal",
+            noAlign: true,
+            special: {
+                mode: "grav_yellow"
+            }
+        },
         yellowPad: {
             imgW: 50,
             hitW: 60,

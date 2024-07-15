@@ -207,10 +207,11 @@ registerConsts({
         coin: [1329],
         cubePortal: [12],
         shipPortal: [13],
+        bluePortal: [10],
+        yellowPortal: [11],
         yellowPad: [35],
-        yellowOrb: [36],
         bluePad: [67],
-        bluePortal: [10]
+        yellowOrb: [36]
     },
     gdToJsonMoves: {
         1.5: ["halfSpike"],

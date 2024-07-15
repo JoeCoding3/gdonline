@@ -226,3 +226,7 @@ function showLevelDescription () {
 	if (levelDescription == "") alert("No level description.")
 	else alert("Level description:\n" + levelDescription)
 }
+
+function debugLevelIds () {
+	return JSON.stringify(unusedLevelIds.sort((a, b) => a - b)).replace("[", "").replace("]", "")
+}

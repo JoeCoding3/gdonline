@@ -10,6 +10,7 @@ Controls:
 Editor Controls:
     WASD: Fly
     Scroll: Select block
+        Shift: Scroll faster
     Left-Click: Place block
     Middle-Click: Remove block
     Right-Click: Place block rotated 180 degrees

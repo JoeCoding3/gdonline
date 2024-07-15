@@ -210,7 +210,10 @@ function orbBoostPlayer (mode) {
 function updatePlayerMode (mode) {
     if (mode.startsWith("grav_")) {
         let gravMode = mode.substring(5)
-        if (gravMode == "blue") playerSpdY = 0, playerGrav = Math.abs(playerGrav)
+        playerSpdY = 0
+        playerOnGround = false
+        if (gravMode == "blue") playerGrav = Math.abs(playerGrav)
+        else if (gravMode == "yellow") playerGrav = -Math.abs(playerGrav)
     } else if (playerMode != mode && mode != null) {
         playerMode = mode
         playerSrc = "./assets/sprites/player/" + mode + ".png"
