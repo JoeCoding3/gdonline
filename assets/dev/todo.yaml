@@ -1,6 +1,9 @@
 description:
     [WIP] My recreation of GD, online
 todo:
+    fix upside-down gravity:
+        player moves to top of blocks:
+            when upside-down, move to bottom
     add ceiling after ship portal:
         remove after cube portal
         look at level "back on track" for ceiling height
