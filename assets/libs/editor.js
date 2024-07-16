@@ -67,6 +67,7 @@ function click (btn, x, y, rot90) {
                 imgX: gridX,
                 imgY: y,
                 rot: rot90 ? 270 : 0,
+                orig_rot: rot90 ? 270 : 0,
                 orig_imgX: gridX - levelStartOffset
             })
         }
@@ -88,6 +89,7 @@ function click (btn, x, y, rot90) {
                 imgX: gridX,
                 imgY: y,
                 rot: rot90 ? 90 : 180,
+                orig_rot: rot90 ? 90 : 180,
                 orig_imgX: gridX - levelStartOffset
             })
         }

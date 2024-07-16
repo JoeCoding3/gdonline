@@ -177,6 +177,7 @@ async function importFromReal (bypassEditor, forceSelect) {
 		if (index != null) {
 			currentCoins = 0
 
+			levelName = levelTable[index].name
 			let levelData = getLevel(index)
 			let converted = gdToJson(levelData)
 
@@ -223,8 +224,8 @@ async function importFromReal (bypassEditor, forceSelect) {
 	}
 }
 function showLevelDescription () {
-	if (levelDescription == "") alert("No level description.")
-	else alert("Level description:\n" + levelDescription)
+	if (levelDescription == "") alert("Level name: " + levelName + "\nNo level description")
+	else alert("Level name: " + levelName + "\nLevel description: " + levelDescription)
 }
 
 function debugLevelIds () {

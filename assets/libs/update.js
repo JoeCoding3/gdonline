@@ -14,6 +14,7 @@ let lastFpsStr = ""
 let editorIcons = []
 let levelEnding = false
 let levelEnded = false
+let endlessMode = false
 registerConsts({
     playerGrav: 0.85,
     playerGravShip: 0.35,
@@ -103,7 +104,7 @@ async function updateGraphics () {
 
     playerCanvas.text(50, 20, 30, objTypeHitCols.text, gameStatus)
 
-    if (!editorEnabled) {
+    if (!editorEnabled && !endlessMode) {
         calculateStartOffset()
         let playerPos = -levelStartOffset + playerX - (playerW / 2)
         
@@ -135,8 +136,8 @@ function updatePhysics () {
             playerShipPressTime += playerShipPressMul
             if (playerShipPressTime >= playerShipPressCap) playerShipPressTime = playerShipPressCap
 
-            if (isShip) playerSpdY = -playerJumpVelShip * playerShipPressTime
-            else if (playerOnGround || editorEnabled) playerSpdY = -playerJumpVel
+            if (isShip) playerSpdY = playerJumpVelShip * playerShipPressTime * (playerGrav < 0 && !editorEnabled ? 1 : -1)
+            else if (playerOnGround || editorEnabled) playerSpdY = playerJumpVel * (playerGrav < 0 && !editorEnabled ? 1 : -1)
         } else {
             playerShipPressTime = 0
             playerShipFallTime += playerShipFallMul
@@ -184,7 +185,7 @@ function updatePhysics () {
 
             if (editorEnabled && !pressingDown) playerSpdY = 0
             else if (editorEnabled) playerSpdY += Math.abs(isShip ? playerGravShip : playerGrav)
-            else playerSpdY += isShip ? playerGravShip : playerGrav
+            else playerSpdY += isShip ? (playerGravShip * (playerGrav < 0 ? -1 : 1)) : playerGrav
             if (playerSpdY >= playerYSpdCap) playerSpdY = playerYSpdCap
             if (playerSpdY <= -playerYSpdCap) playerSpdY = -playerYSpdCap
         }
@@ -199,21 +200,23 @@ function updatePhysics () {
 }
 function padBoostPlayer (mode) {
     playerOnGround = false
-    if (mode == "yellow") playerSpdY = -padYellowJumpVel
-    else if (mode == "blue") playerSpdY = 0, playerGrav = -Math.abs(playerGrav)
+    if (mode == "yellow") playerSpdY = padYellowJumpVel * (playerGrav < 0 ? 1 : -1)
+    else if (mode == "blue") playerSpdY = 0, playerGrav *= -1
 }
 function orbBoostPlayer (mode) {
     playerOnGround = false
-    if (mode == "yellow") playerSpdY = -orbYellowJumpVel
+    if (mode == "yellow") playerSpdY = orbYellowJumpVel * (playerGrav < 0 ? 1 : -1)
 }
 
 function updatePlayerMode (mode) {
     if (mode.startsWith("grav_")) {
         let gravMode = mode.substring(5)
-        playerSpdY = 0
-        playerOnGround = false
-        if (gravMode == "blue") playerGrav = Math.abs(playerGrav)
-        else if (gravMode == "yellow") playerGrav = -Math.abs(playerGrav)
+
+        let setSpd = true
+        if (gravMode == "blue" && playerGrav < 0) playerGrav = Math.abs(playerGrav)
+        else if (gravMode == "yellow" && playerGrav >= 0) playerY -= collisionWallOffset, playerGrav = -Math.abs(playerGrav)
+        else setSpd = false
+        if (setSpd) playerSpdY = 0, playerOnGround = false
     } else if (playerMode != mode && mode != null) {
         playerMode = mode
         playerSrc = "./assets/sprites/player/" + mode + ".png"
@@ -224,5 +227,13 @@ function updatePlayerMode (mode) {
         img.onload = function () {
             playerImg = this
         }
+    }
+}
+function setEndlessMode (val) {
+    endlessMode = val
+    if (val) {
+        if (!editorEnabled) removeEndObj()
+    } else {
+        addEndObj()
     }
 }

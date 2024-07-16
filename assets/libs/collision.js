@@ -3,6 +3,9 @@ let shipOnCeiling = false
 let playerCrashed = false
 let playerCoins = 0
 let collisionBoxes = []
+registerConsts({
+    collisionWallOffset: 2
+})
 function checkCollision () {
     checkHeadCollision()
     checkGroundCollision()
@@ -34,20 +37,37 @@ function checkHeadCollision () {
                 colliding = x1 && x2 && y1 && y2
                 
                 if (bT == "deco") continue
-                if (bT == "spike" && colliding) respawnPlayer()
-                if (bT == "ground") {
+                if (bT == "ground" || bT == "spike") {
                     if (playerMode == "ship") {
-                        shipOnCeiling = colliding
-                        if (shipOnCeiling) playerY = bY + bH + (playerW / 2) + 1
-                    } else if (colliding) respawnPlayer()
+                        if (playerGrav >= 0) {
+                            shipOnCeiling = colliding
+                            if (colliding) playerY = bY + bH + (playerW / 2) + 1
+                        } else {
+                            playerOnGround = colliding
+                            if (colliding) playerY = bY + bH + (playerW / 2)
+                        }
+                    } else {
+                        if (playerGrav < 0) playerOnGround = colliding
+                        if (colliding) {
+                            if (playerGrav < 0) playerY = bY + bH + (playerW / 2)
+                            else respawnPlayer()
+                        }
+                    }
                 }
+                if (bT == "spike" && colliding) respawnPlayer()
                 if (bT == "coin" && colliding && !editorEnabled) {
                     collisionBoxes[index].noRender = true
                     playerCoins++
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
-                if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
-                if (bT == "orb" && colliding && pressingUp) orbBoostPlayer(bS.mode)
+                if (bT == "pad" && colliding && !box.activated) {
+                    collisionBoxes[index].activated = true
+                    padBoostPlayer(bS.mode)
+                }
+                if (bT == "orb" && colliding && pressingUp && !box.activated) {
+                    collisionBoxes[index].activated = true
+                    orbBoostPlayer(bS.mode)
+                }
 
                 if (colliding && (bT == "ground" || bT == "spike")) break
             }
@@ -83,8 +103,21 @@ function checkGroundCollision () {
                 
                 if (bT == "deco") continue
                 if (bT == "ground" || bT == "spike") {
-                    playerOnGround = colliding
-                    if (playerOnGround) playerY = bY - (playerW / 2)
+                    if (playerMode == "ship") {
+                        if (playerGrav < 0) {
+                            shipOnCeiling = colliding
+                            if (colliding) playerY = bY - (playerW / 2) - 1
+                        } else {
+                            playerOnGround = colliding
+                            if (colliding) playerY = bY - (playerW / 2)
+                        }
+                    } else {
+                        if (playerGrav >= 0) playerOnGround = colliding
+                        if (colliding) {
+                            if (playerGrav >= 0) playerY = bY - (playerW / 2)
+                            else respawnPlayer()
+                        }
+                    }
                 }
                 if (bT == "spike" && colliding) respawnPlayer()
                 if (bT == "coin" && colliding && !editorEnabled) {
@@ -92,8 +125,14 @@ function checkGroundCollision () {
                     playerCoins++
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
-                if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
-                if (bT == "orb" && colliding && pressingUp) orbBoostPlayer(bS.mode)
+                    if (bT == "pad" && colliding && !box.activated) {
+                        collisionBoxes[index].activated = true
+                        padBoostPlayer(bS.mode)
+                    }
+                    if (bT == "orb" && colliding && pressingUp && !box.activated) {
+                        collisionBoxes[index].activated = true
+                        orbBoostPlayer(bS.mode)
+                    }
 
                 if (colliding && (bT == "ground" || bT == "spike")) break
             }
@@ -106,8 +145,8 @@ function checkWallCollision () {
     if (!playerCrashed && !editorEnabled) {
         let colliding
         let cX = playerX + (playerW / 2)
-        for (let y = 0; y < playerW; y++) {
-            let cY = y + playerY - (playerW / 2)
+        for (let y = 0; y < playerW - (collisionWallOffset * 2); y++) {
+            let cY = y + playerY - (playerW / 2) + collisionWallOffset
 
             for (let index in collisionBoxes) {
                 let box = collisionBoxes[index]
@@ -134,8 +173,14 @@ function checkWallCollision () {
                     playerCoins++
                 }
                 if (bT == "portal" && colliding) updatePlayerMode(bS.mode)
-                if (bT == "pad" && colliding) padBoostPlayer(bS.mode)
-                if (bT == "orb" && colliding && pressingUp) orbBoostPlayer(bS.mode)
+                    if (bT == "pad" && colliding && !box.activated) {
+                        collisionBoxes[index].activated = true
+                        padBoostPlayer(bS.mode)
+                    }
+                    if (bT == "orb" && colliding && pressingUp && !box.activated) {
+                        collisionBoxes[index].activated = true
+                        orbBoostPlayer(bS.mode)
+                    }
 
                 if (colliding && (bT == "ground" || bT == "spike")) break
             }
@@ -165,6 +210,7 @@ async function resetPlayer (noScript, noLoad) {
     playerX = 0
     playerY = innerHeight - (playerW / 2) - 128
     playerR = 0
+    playerGrav = Math.abs(playerGrav)
 
     calculateStartOffset()
     for (let obj of collisionBoxes) {

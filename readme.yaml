@@ -9,6 +9,7 @@ Controls:
     K: Show level description. (Also shows when loading a level)
 Editor Controls:
     WASD: Fly
+        Shift: Fly faster
     Scroll: Select block
         Shift: Scroll faster
     Left-Click: Place block

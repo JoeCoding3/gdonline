@@ -92,7 +92,7 @@ function cBoxToLevelObj (cBox) {
         for (let key of keys) {
             let val = cBox[key]
             let subKey = key.substring(5)
-            if (key.startsWith("orig_") && val != defaultObjGlobalInfo[subKey] && val != defaultObjInfo[objName][subKey] && subKey != "obj" && subKey != "special" && subKey != "noRender") lObj[subKey] = val
+            if (key.startsWith("orig_") && val != defaultObjGlobalInfo[subKey] && val != defaultObjInfo[objName][subKey] && subKey != "obj" && subKey != "special" && subKey != "noRender" && subKey != "activated") lObj[subKey] = val
         }
 
         if (lObj.hitX == lObj.hitW / -2) delete lObj.hitX
@@ -207,14 +207,14 @@ function removeEndObj () {
     }
 }
 function addEndObj (noAdd) {
-    if (!noAdd) removeEndObj()
+    if (!noAdd && !endlessMode) removeEndObj()
 
     let maxBox = {imgX: 0, imgW: 0}
     for (let box of collisionBoxes) if (box.imgX + (box.imgW / 2) > maxBox.imgX + (maxBox.imgW / 2) && box.obj != "bg" && box.obj != "ground" && box.obj != "fixer" && box.obj != "ending") maxBox = box
     
     let endX = maxBox.imgX + (maxBox.imgW / 2) + defaultObjInfo.ending.special.spacing
     if (endX < innerWidth - (editorGridSize / 2)) endX = innerWidth - (editorGridSize / 2)
-    if (!noAdd) {
+    if (!noAdd && !endlessMode) {
         calculateStartOffset()
         addCollisionBox({
             obj: "ending",
