@@ -1,5 +1,5 @@
 Developers:
-    Main: github@JoeCoding3
+    Main: Joe Michael
     Feedback/Help: Jack Rocco
 Controls:
     Space: Jump
@@ -7,6 +7,7 @@ Controls:
     P: Toggle pause
     R: Teleport to start of level
     K: Show level description. (Also shows when loading a level)
+    V: Show game version info
 Editor Controls:
     WASD: Fly
         Shift: Fly faster

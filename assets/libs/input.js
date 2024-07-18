@@ -21,6 +21,7 @@ onkeydown = function (ev) {
     else if (key == "i") startLevelImport(levelEnded, pressingShift)
     else if (key == "l") importFromReal(levelEnded, pressingShift)
     else if (key == "k") showLevelDescription()
+    else if (key == "v") showVersionInfo()
 
     pressingShift = false
     if (key == "shift") pressingShift = true
