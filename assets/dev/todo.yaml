@@ -20,3 +20,5 @@ todo:
             try playerSpdX=10
             need to change gravity, jump height, jump pad strength, ground object repeat offset, etc. to account for faster speed
         make fps more stable so music can sync
+    add version system:
+        maybe the first version is the first public release
