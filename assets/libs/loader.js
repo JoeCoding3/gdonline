@@ -44,6 +44,8 @@ async function loadAssets () {
     await require("libs/pako.js")
     
     await require("options.js")
+    await require("version/githubusertoken.js")
+    await require("version/version.js")
 }
 async function loadLevelScript () {
     if (levelScript != undefined) levelScript.remove()
