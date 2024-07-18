@@ -7,7 +7,7 @@ Controls:
     P: Toggle pause
     R: Teleport to start of level
     K: Show level description. (Also shows when loading a level)
-    V: Show game version info
+    V: Show game version info (Also shows on game load)
 Editor Controls:
     WASD: Fly
         Shift: Fly faster

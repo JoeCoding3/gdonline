@@ -8,7 +8,8 @@ onload = function () {
             playerW: 59
         })
         assignConsts()
-        getVersion()
+        await getVersion()
+        showVersionInfo()
     
         updatePlayerMode("cube")
     
