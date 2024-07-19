@@ -11,6 +11,6 @@ async function getVersion () {
     }
 }
 function showVersionInfo () {
-    if (githubVersion == undefined) alert("GDOnline by Joe Michael and Jack Rocco\nGame version: " + gameVersion + "\nGitHub version: [unknown]\n    Error: Cannot connect to GitHub.")
-    else alert("GDOnline by Joe Michael and Jack Rocco\nGame version: " + gameVersion + "\nGitHub version: " + githubVersion)
+    if (githubVersion == undefined) alert("Game version: " + gameVersion + "\nGitHub version: [unknown]\n    Error: Cannot connect to GitHub.")
+    else alert("Game version: " + gameVersion + "\nGitHub version: " + githubVersion)
 }
