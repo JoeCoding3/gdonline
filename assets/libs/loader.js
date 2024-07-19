@@ -44,7 +44,7 @@ async function loadAssets () {
     await require("libs/pako.js")
     
     await require("options.js")
-    await require("version/version.js")
+    await require("libs/version.js")
 }
 async function loadLevelScript () {
     if (levelScript != undefined) levelScript.remove()
