@@ -111,6 +111,10 @@ HTMLCanvasElement.prototype.line = function (sX, sY, eX, eY, c, h = 1) {
     this.ctx.lineTo(...eScaled)
     this.ctx.stroke()
 }
+HTMLCanvasElement.prototype.point = function (x, y, c) {
+    this.ctx.fillStyle = this.ctx.strokeStyle = c
+    this.ctx.fillRect(x, y, 1, 1)
+}
 HTMLCanvasElement.prototype.rect = function (x, y, w, h, c, rot = 0, lineWidth = -1) {
     this.ctx.fillStyle = this.ctx.strokeStyle = c
     this.ctx.lineWidth = lineWidth
@@ -266,6 +270,23 @@ HTMLCanvasElement.prototype.putData = function (x, y, dataObj, rot = 0) {
     
     this.ctx.restore()
 }
+HTMLCanvasElement.prototype.applyFilter = function (x, y, w, h, filter) {
+    let data = this.getData(x, y, w, h).data
+    for (let index in data) {
+        let dataObj = data[index]
+        let newDataObj = filter(dataObj.r, dataObj.g, dataObj.b, dataObj.a)
+        data[index] = newDataObj
+    }
+    this.putData(x, y, {
+        data,
+        width: w,
+        height: h
+    })
+}
 HTMLCanvasElement.prototype.getDataURL = function () {
     return this.toDataURL()
+}
+
+function degToRad (deg) {
+    return deg * (Math.PI / 180)
 }
