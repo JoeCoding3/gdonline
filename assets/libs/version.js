@@ -1,13 +1,13 @@
 let githubVersion
 registerConsts({
-    githubVersionEndpoint: "https://raw.githubusercontent.com/JoeCoding3/versions/main/gdonline.txt",
+    githubVersionEndpoint: "https://raw.githubusercontent.com/JoeCoding3/versions/main/versions.json",
     gameVersion: 1
 })
 async function getVersion () {
     let resp = await fetch(githubVersionEndpoint)
     if (resp.ok) {
-        let text = await resp.text()
-        githubVersion = +text
+        let json = await resp.json()
+        githubVersion = json.gdonline
     }
 }
 function showVersionInfo () {
